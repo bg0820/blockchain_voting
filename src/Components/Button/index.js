@@ -8,8 +8,8 @@ class Button extends PureComponent {
 		console.log("3");
 	}
 
-	handleClick = () => {
-		this.props.handleClick();
+	handleClick = (e) => {
+		this.props.clickCallback(e);
 	}
 
 	render() {

@@ -1,9 +1,15 @@
 {
 	"env": {
 		"browser": true,
-		"es6": true
+		"es6": true,
+		"node": true
 	},
-	"extends": "eslint:recommended",
+	"extends": [
+		"airbnb",
+		"prettier",
+		"prettier/react"
+	],
+	"parser": "babel-eslint",
 	"globals": {
 		"Atomics": "readonly",
 		"SharedArrayBuffer": "readonly"
@@ -18,5 +24,31 @@
 	"plugins": [
 		"react"
 	],
-	"rules": {}
+	"rules": {
+		"react/jsx-filename-extension": [1, {
+			"extensions": [".js", ".jsx"]
+		}],
+		"indent": [0, "tab"],
+		"no-tabs": 0,
+		"import/no-unresolved": "off",
+		"no-underscore-dangle": [2, {
+			"allow": [
+				"__REDUX_DEVTOOLS_EXTENSION__"
+			]
+		}],
+		"semi": 0,
+		"react/jsx-indent": 0,
+		"jsx-a11y/img-redundant-alt": 0,
+		"react/prop-types": [0],
+		"react/destructuring-assignment": [0, "always"],
+		"treatUndefinedAsUnspecified": true,
+		"array-callback-return": [0],
+		"consistent-return": [0],
+		"no-unused-vars": [0],
+		"react/no-array-index-key": [0]
+	},
+	"compilerOptions": {
+		"experimentalDecorators": true,
+		"allowJs": true
+	}
 }

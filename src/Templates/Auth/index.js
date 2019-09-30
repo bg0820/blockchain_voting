@@ -4,6 +4,11 @@ import Button from '@components/Button';
 import './index.scss';
 
 class AuthTemplate extends PureComponent {
+
+	clickCallback = (e) => {
+		this.props.clickCallback(e);
+	}
+	
 	render() {
 		return (
 			<div className="AuthTemplate">
@@ -11,7 +16,7 @@ class AuthTemplate extends PureComponent {
 					{this.props.children}
 				</div>
 				<div className="buttonArea">
-					<Button value={this.props.btnValue}></Button>
+					<Button value={this.props.btnValue} clickCallback={this.clickCallback}></Button>
 				</div>
 			</div>
 		);

@@ -7,7 +7,7 @@ import './index.scss'
 
 
 @inject('page')
-class OTPAuth extends PureComponent {
+class StudentNumberAuth extends PureComponent {
 
 	clickCallback = (e) => {
 		const {page} = this.props;
@@ -20,8 +20,8 @@ class OTPAuth extends PureComponent {
 			<div className="OTPAuth">
 				<AuthTemplate btnValue="인증 완료" clickCallback={this.clickCallback}>
 					<div className="infoMsg">
-						<p className="mainTitle">OTP 인증</p>
-						<p className="subTitle">학내 구성원임을 인증해주세요.</p>
+						<p className="mainTitle">학번 입력</p>
+						<p className="subTitle">학번을 입력해주세요.</p>
 					</div>
 
 					<div className="inputArea">
@@ -41,4 +41,4 @@ class OTPAuth extends PureComponent {
 	}
 }
 
-export default OTPAuth;
+export default StudentNumberAuth;
