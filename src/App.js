@@ -1,44 +1,21 @@
 import React, {PureComponent} from 'react';
 
-import Button from '@components/Button';
+import OTPAuth from '@pages/OTPAuth'
 
 class App extends PureComponent {
-	constructor() {
-		super();
-		
-		this.state = {
-			val: 0
-		}
-
-		console.log("1");
-	}
-
-	componentDidMount() {
-		console.log("2");
-	}
-
-	plus = () => {
-		this.setState({
-			val: this.state.val + 1
-		})
-	}
-
-	minus = () => {
-		this.setState({
-			val: this.state.val - 1
-		})
-	}
-
-
 
 	render() {
+		let view = 'auth_1';
+		let viewDiv = null;
+
+		if(view === 'auth_1') {
+			viewDiv = <OTPAuth></OTPAuth>
+		}
+
 		return (
-			<div className="">
-				<Button value="+" handleClick={this.plus}></Button>
-				<Button value="-" handleClick={this.minus}></Button>
-				
-				<p>{this.state.val}</p>
-			</div>
+			<React.Fragment>
+				{viewDiv}
+			</React.Fragment>
 		)
 	}
 

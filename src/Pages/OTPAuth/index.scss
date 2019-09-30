@@ -1,0 +1,55 @@
+$color7: #FBFDFF;
+
+
+.OTPAuth {
+	width: 100%;
+	height: 100%;
+
+
+	.infoMsg {
+		p {
+			color: $color7;
+			text-align: center;
+
+			&.mainTitle {
+				font-size: 18px;
+			}
+
+			&.subTitle {
+				font-size: 12px;
+				margin-bottom: 50px;
+			}
+		}
+
+	}
+
+	.inputArea {
+		width: 80%;
+	}
+
+	.inputInfoMsg {
+		margin-top: 10px;
+
+		.horizontalCenter {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 5px;
+		}
+
+		p {
+			text-align: center;
+			float: left;
+			color: #fff;
+			margin-right: 3px;
+
+			&.back {
+				color: #34C4C2;
+				background: #fff;
+			}
+
+			&::after {
+				clear: both;
+			}
+		}
+	}
+}
