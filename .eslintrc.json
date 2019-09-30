@@ -1,15 +1,9 @@
 {
 	"env": {
 		"browser": true,
-		"es6": true,
-		"node": true
+		"es6": true
 	},
-	"extends": [
-		"airbnb",
-		"prettier",
-		"prettier/react"
-	],
-	"parser": "babel-eslint",
+	"extends": "eslint:recommended",
 	"globals": {
 		"Atomics": "readonly",
 		"SharedArrayBuffer": "readonly"
@@ -24,17 +18,5 @@
 	"plugins": [
 		"react"
 	],
-	"rules": {
-		"react/jsx-filename-extension": [1, {
-			"extensions": [".js", ".jsx"]
-		}],
-		"indent": [1, "tab"],
-		"no-tabs": 0,
-		"import/no-unresolved": "off",
-		"no-underscore-dangle": [2, {
-			"allow": [
-				"__REDUX_DEVTOOLS_EXTENSION__"
-			]
-		}]
-	}
+	"rules": {}
 }
