@@ -2,9 +2,9 @@ import React, {PureComponent} from 'react';
 import { observer, inject } from 'mobx-react';
 
 import AuthTemplate from '@templates/Auth';
+import KeypadButton from '@components/KeypadButton';
 
 import './index.scss'
-
 
 @inject('page')
 class StudentNumberAuth extends PureComponent {
@@ -17,8 +17,8 @@ class StudentNumberAuth extends PureComponent {
 
 	render() {
 		return (
-			<div className="OTPAuth">
-				<AuthTemplate btnValue="인증 완료" clickCallback={this.clickCallback}>
+			<div className="StudentNumberAuth">
+				<AuthTemplate btnValue="인증 완료" isKeypad={true}>
 					<div className="infoMsg">
 						<p className="mainTitle">학번 입력</p>
 						<p className="subTitle">학번을 입력해주세요.</p>

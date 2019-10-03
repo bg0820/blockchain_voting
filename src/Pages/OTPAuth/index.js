@@ -13,7 +13,7 @@ class OTPAuth extends PureComponent {
 		const {page} = this.props;
 		page.setPage('schoolId_auth');
 		console.log('btnClick', e);
-	} 
+	}
 
 	render() {
 		return (

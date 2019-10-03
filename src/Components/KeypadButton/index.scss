@@ -1,0 +1,33 @@
+.KeypadButton {
+	input[type='button'] {
+		font-family: 'Work Sans', sans-serif;
+		font-weight: bold;
+		background: transparent;
+		height: 35px;
+		width: 35px;
+		color: #fff;
+		border-radius: 50%;
+		font-size: 25px;
+		line-height: 20px;
+		text-align: center;
+		-webkit-transition: width background 0.2s, color 0.2s, box-shadow 0.2s;
+		-webkit-transition-timing-function: ease;
+		transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+		transition-timing-function: ease;
+
+		&:focus {
+			outline: 0;
+		}
+
+		&:active {
+			box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+			background: #fff;
+			color: #34C7B0;
+
+			-webkit-transition: width background 0.2s, color 0.2s, box-shadow 0.2s;
+			-webkit-transition-timing-function: ease;
+			transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+			transition-timing-function: ease;
+		}
+	}
+}
