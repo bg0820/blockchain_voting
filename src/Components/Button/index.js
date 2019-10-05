@@ -8,13 +8,8 @@ class Button extends PureComponent {
 		super(props);
 
 		this.state = {
-			style: "Button "
+			style: "btn "
 		};
-
-		if(this.props.style) {
-			this.state.style = this.state.style +  this.props.style;
-		}
-		console.log(this.state);
 	}
 	componentDidMount() {
 		console.log("3");
@@ -25,9 +20,15 @@ class Button extends PureComponent {
 	}
 
 	render() {
+		let style = this.state.style;
+
+		if(this.props.style) {
+			style += this.props.style;
+		}
+
 		return (
 			<div className="Button">
-				<input type="button" className={this.state.style} value={this.props.value} onClick={this.handleClick}></input>
+				<input type="button" className={style} value={this.props.value} onClick={this.handleClick}></input>
 			</div>
 		)
 	}
