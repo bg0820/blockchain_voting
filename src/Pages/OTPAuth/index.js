@@ -10,9 +10,9 @@ import './index.scss'
 class OTPAuth extends PureComponent {
 
 	clickCallback = (e) => {
+		// 페이지 이동
 		const {page} = this.props;
-		page.setPage('schoolId_auth');
-		console.log('btnClick', e);
+		page.setPage('student_number_auth');
 	}
 
 	render() {

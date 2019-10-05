@@ -1,8 +1,9 @@
 import { observable, action } from 'mobx';
 
 export default class Page {
-	@observable 
-	page = 'otp_auth';
+	// otp_auth, student_number_auth, vote_list
+	@observable
+	page = 'vote_list';
   
 	@action setPage = (page) => {
 	  this.page = page;

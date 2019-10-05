@@ -16,7 +16,7 @@ class App extends PureComponent {
 		console.log(page.page);
 		if(page.page === 'otp_auth') {
 			viewDiv = <OTPAuth></OTPAuth>
-		} else if(page.page === 'schoolId_auth') {
+		} else if(page.page === 'student_number_auth') {
 			viewDiv = <StudentNumberAuth></StudentNumberAuth>
 		} else if(page.page === 'vote_list') {
 			viewDiv = <VoteList></VoteList>

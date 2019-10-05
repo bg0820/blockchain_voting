@@ -17,8 +17,8 @@ class VoteListTemplate extends PureComponent {
 		return (
 			<div className="VoteListTemplate">
 				<div className="menuBar">
-					<Button value="진행중" type="select" clickCallback={this.continueBtnClickCallback}></Button>
-					<Button value="결과 보기" type="nonSelect" clickCallback={this.resultBtnClickCallback}></Button>
+					<Button value="진행중" style="menu select" clickCallback={this.continueBtnClickCallback}></Button>
+					<Button value="결과 보기" style="menu" clickCallback={this.resultBtnClickCallback}></Button>
 				</div>
 				<div className="content">
 					{this.props.children}
