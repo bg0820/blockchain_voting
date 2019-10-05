@@ -22,7 +22,7 @@ class VoteListTemplate extends PureComponent {
 
 	render() {
 		const {vote} = this.props;
-		console.log(vote.type);
+		
 		let isContinueSelect = "";
 		let isResultSelect = "";
 
@@ -30,9 +30,6 @@ class VoteListTemplate extends PureComponent {
 			isContinueSelect = " select";
 		else if (vote.type === 'result')
 			isResultSelect =  " select";
-
-		console.log(isContinueSelect);
-		console.log(isResultSelect);
 
 		return (
 			<div className="VoteListTemplate">

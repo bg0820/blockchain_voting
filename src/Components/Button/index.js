@@ -14,7 +14,7 @@ class Button extends PureComponent {
 	componentDidMount() {
 		console.log("3");
 	}
-
+ 
 	handleClick = (e) => {
 		this.props.clickCallback(e);
 	}
@@ -25,10 +25,12 @@ class Button extends PureComponent {
 		if(this.props.style) {
 			style += this.props.style;
 		}
+		console.log(this.props.style);
+		console.log(style);
 
 		return (
 			<div className="Button">
-				<input type="button" className={this.state.style} value={this.props.value} onClick={this.handleClick}></input>
+				<input type="button" className={style} value={this.props.value} onClick={this.handleClick}></input>
 			</div>
 		)
 	}
