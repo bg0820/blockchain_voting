@@ -5,6 +5,7 @@ import OTPAuth from '@pages/OTPAuth'
 import StudentNumberAuth from '@pages/StudentNumberAuth';
 import VoteList from '@pages/VoteList';
 import Voting from '@pages/Voting';
+import VotingSingle from './Pages/VotingSingle';
 
 
 @inject('page')
@@ -24,6 +25,8 @@ class App extends PureComponent {
 			viewDiv = <VoteList></VoteList>
 		} else if(page.page === 'voting') {
 			viewDiv = <Voting></Voting>
+		}else if(page.page === 'votingSingle') {
+			viewDiv = <VotingSingle></VotingSingle>
 		}
 
 		return (

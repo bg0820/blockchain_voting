@@ -6,13 +6,14 @@ import Button from '../../Components/Button';
 
 
 @inject('page')
-class Voting extends PureComponent {
+class VotingSingle extends PureComponent {
 	clickCallback = (e) => {
+
 	}
 
 	render() {
 		return (
-			<div className="Voting">
+			<div className="VotingSingle">
 				<div className="NavBar">
 					<span className="I_LEFT_ARROW"></span>
 					<div className="voteTitle">
@@ -63,4 +64,4 @@ class Voting extends PureComponent {
 	}
 }
 
-export default Voting;
+export default VotingSingle;
