@@ -5,15 +5,15 @@ import AuthTemplate from '@templates/Auth';
 
 import './index.scss'
 
-
 @inject('page')
 class OTPAuth extends PureComponent {
 
 	clickCallback = (e) => {
-		// 페이지 이동
 		const {page} = this.props;
-		page.setPage('student_number_auth');
-	}
+		//if()d
+		page.setPage('schoolId_auth');
+		console.log('btnClick', e);
+	} 
 
 	render() {
 		return (

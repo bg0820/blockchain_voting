@@ -8,7 +8,7 @@ import VoteList from '@pages/VoteList';
 @inject('page')
 @observer
 class App extends PureComponent {
-
+ 
 	render() {
 		let viewDiv = null;
 
@@ -27,9 +27,11 @@ class App extends PureComponent {
 				{viewDiv}
 			</React.Fragment>
 		)
+			
+		
 	}
 
 }
-
+ 
 
 export default App;
