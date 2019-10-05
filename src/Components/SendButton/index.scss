@@ -1,0 +1,40 @@
+.SendButton {
+	.btn {
+		cursor: pointer;
+		background: #fff;
+		height: 30px;
+		width: 20%;
+		color: #34C4C2;
+		border-radius: 30px;
+		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+
+		&:focus {
+			outline: 0;
+		}
+
+		&:hover {
+			background: #34C4C2;
+			color: #fff;
+		}
+
+		&.menu {
+			background: transparent;
+			color: #fff;
+			box-shadow: none;
+
+			&:hover {
+				background: #fff;
+				color: #34C4C2;
+				box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+			}
+		}
+
+		&.select {
+			background: #fff;
+			color: #34C4C2;
+			box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+		}
+
+
+	}
+}

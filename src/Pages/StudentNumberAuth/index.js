@@ -9,11 +9,6 @@ import './index.scss'
 @inject('page')
 class StudentNumberAuth extends PureComponent {
 
-	clickCallback = (e) => {
-		const {page} = this.props;
-		page.setPage('schoolId_auth');
-		console.log('btnClick', e);
-	} 
 
 	render() {
 		return (
