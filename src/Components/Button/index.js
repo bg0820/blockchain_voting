@@ -4,6 +4,13 @@ import './index.scss';
 
 class Button extends PureComponent {
 
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			style: "btn "
+		};
+	}
 	componentDidMount() {
 		console.log("3");
 	}
@@ -13,9 +20,15 @@ class Button extends PureComponent {
 	}
 
 	render() {
+		let style = this.state.style;
+
+		if(this.props.style) {
+			style += this.props.style;
+		}
+
 		return (
 			<div className="Button">
-				<input type="button" value={this.props.value} onClick={this.handleClick}></input>
+				<input type="button" className={this.state.style} value={this.props.value} onClick={this.handleClick}></input>
 			</div>
 		)
 	}
