@@ -4,10 +4,17 @@ import { observer, inject } from 'mobx-react';
 import OTPAuth from '@pages/OTPAuth'
 import StudentNumberAuth from '@pages/StudentNumberAuth';
 import VoteList from '@pages/VoteList';
+import Voting from '@pages/Voting';
+
 
 @inject('page')
 @observer
 class App extends PureComponent {
+
+	constructor(){
+		super();
+		console.log("fail");
+	}
 
 	render() {
 		let viewDiv = null;
@@ -20,6 +27,8 @@ class App extends PureComponent {
 			viewDiv = <StudentNumberAuth></StudentNumberAuth>
 		} else if(page.page === 'vote_list') {
 			viewDiv = <VoteList></VoteList>
+		} else if(page.page === 'voting') {
+			viewDiv = <Voting></Voting>
 		}
 
 		return (
