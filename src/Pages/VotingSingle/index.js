@@ -44,15 +44,26 @@ class VotingSingle extends PureComponent {
                                 </div>    
                                 <div className="voteArea">
                                     <Button value='경력 및 공략' style='reverse' clickCallback={this.clickCallback}></Button>
-                                    <div className="center">
-                                        <img className="VoteMark" src="/image/vote_mark.png"></img> 
-                                        <p>터치</p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div className="voteSelect">
+                        <div className="card">
+                            <p>찬성</p>
+                            <img src="/image/vote_mark.png"></img>
+                        </div>
+                    </div>
+
+                    <div className="voteSelect">
+                        <div className="card">
+                            <p>반대</p>
+                            <img src="/image/vote_mark.png"></img>
+                        </div>
+                    </div>
                 </div>
+
                 <div className="bottomArea">
                     <div className="split">
                         <Button value='기권하기' style='giveUp' clickCallback={this.clickCallback}></Button>

@@ -9,7 +9,7 @@ import DigitalSignature from '@pages/DigitalSignature';
 import VoteList from '@pages/VoteList';
 import Voting from '@pages/Voting';
 import VotingSingle from './Pages/VotingSingle';
-
+import VotingComplete from './Pages/VotingComplete';
 
 @inject('page')
 @observer
@@ -36,6 +36,8 @@ class App extends PureComponent {
 			viewDiv = <Voting></Voting>
 		}else if(page.page === 'votingSingle') {
 			viewDiv = <VotingSingle></VotingSingle>
+		}else if(page.page === 'votingComplete') {
+			viewDiv = <VotingComplete></VotingComplete>
 		}
 
 		return (

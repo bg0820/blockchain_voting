@@ -22,7 +22,6 @@ class Voting extends PureComponent {
 					</div>
 				</div>
                 <div className="content">
-
                     <div className="Candidate">
                         <p className="number">기호 1번 (늘픔)</p>
                         <div className="card">
@@ -52,6 +51,7 @@ class Voting extends PureComponent {
                         </div>
                     </div>
                 </div>
+
                 <div className="bottomArea">
                     <div className="split">
                         <Button value='기권하기' style='giveUp' clickCallback={this.clickCallback}></Button>
