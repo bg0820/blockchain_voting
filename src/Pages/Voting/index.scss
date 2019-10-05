@@ -52,36 +52,45 @@ $white: #FBFDFF;
 			}
 		}
 
-	}
+    }
+    
+    .content {
 
-    .Candidate{
-
-        .CandidateNum{
-            color: $white;
-            margin-top: 2%;
-        }
-
-        .CandidateCard{
-            background-color: $white;
-            margin-top: 2%;
-            padding-top: 20%;
-            border-radius: 15px; 
-            box-shadow: 5px 5px 3px rgba(0, 0, 0, .1);
-            position: relative;
-
-            .ButtonWrap {
-                position: absolute;
-                width: 25%;
-                top:12%;
-                right: 5%;
+        .Candidate {
+            .CandidateNum{
+                color: $white;
+                margin-top: 2%;
             }
-
-                position: absolute;
-            .VoteMark{
-                width: 50%;
-                margin-top: 10%;
+    
+            .CandidateCard{
+                background: $white;
+                margin-top: 2%;
+                padding-top: 20%;
+                border-radius: 15px; 
+                box-shadow: 5px 5px 3px rgba(0, 0, 0, .1);
+                position: relative;
+    
+                .ButtonWrap {
+                    position: absolute;
+                    width: 25%;
+                    top:12%;
+                    right: 5%;
+                }
+    
+                .VoteMark{
+                    position: absolute;
+                    width: 50%;
+                    margin-top: 10%;
+                    right: 25%;
+				}
+				
+				.Touch{
+					position: absolute;
+					margin-top: 10%;
+                    right: 25%;
+				}
             }
-                right: 25%;
         }
     }
+
 }

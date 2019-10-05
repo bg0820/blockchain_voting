@@ -17,21 +17,24 @@ class Voting extends PureComponent {
 					<span className="I_LEFT_ARROW"></span>
 					<div className="voteTitle">
 						<p>
+                            성공회대학교 제 33대 총학생회 선거
 						</p>
-							성공회대학교 제 33대 총학생회 선거
 					</div>
 				</div>
+                <div className="content">
+
                     <div className="Candidate">
-                    <div className="CandidateNum">기호 1번 (늘품) </div>
-                    <div className="CandidateCard">
-                        <div className="ButtonWrap">
-                            style='reverse' clickCallback={this.clickCallback}></Button>
-                            <Button value='경력 및 공략' 
-                            <img className="VoteMark" src="/image/vote_mark.png" />
-                            <div className="Touch">터치</div>
+                        <div className="CandidateNum">기호 1번 (늘품) </div>
+                        <div className="CandidateCard">
+                            <div className="ButtonWrap">
+                                <Button value='경력 및 공략' style='reverse' clickCallback={this.clickCallback}></Button>
+                                <img className="VoteMark" src="/image/vote_mark.png"></img>
+                                <div className="Touch">터치</div>
+                            </div>
                         </div>
                     </div>
-			</div>
+                </div>
+            </div>
 		);
 	}
 }
