@@ -8,9 +8,14 @@ import PhoneAuth from '@pages/PhoneAuth';
 import DigitalSignature from '@pages/DigitalSignature';
 import VoteList from '@pages/VoteList';
 import Voting from '@pages/Voting';
+<<<<<<< Updated upstream
 import VotingSingle from './Pages/VotingSingle';
 import VotingComplete from './Pages/VotingComplete';
 import VotingResult from './Pages/VotingResult';
+=======
+import SubInformation from '@pages/SubInformation';
+
+>>>>>>> Stashed changes
 
 @inject('page')
 @observer
@@ -35,12 +40,17 @@ class App extends PureComponent {
 			viewDiv = <VoteList></VoteList>
 		} else if(page.page === 'voting') {
 			viewDiv = <Voting></Voting>
+<<<<<<< Updated upstream
 		}else if(page.page === 'votingSingle') {
 			viewDiv = <VotingSingle></VotingSingle>
 		}else if(page.page === 'votingComplete') {
 			viewDiv = <VotingComplete></VotingComplete>
 		}else if(page.page === 'votingResult') {
 			viewDiv = <VotingResult></VotingResult>
+=======
+		} else if(page.page === 'sub_information') {
+			viewDiv = <SubInformation></SubInformation>
+>>>>>>> Stashed changes
 		}
 
 		return (

@@ -1,0 +1,33 @@
+.VoteListItem {
+	overflow: hidden;
+	position: relative;
+	background: #FBFDFF;
+	padding: 20px;
+	border-radius: 15px;
+	box-shadow: rgba(0, 0, 0, 0.16);
+	margin-bottom: 25px;
+
+	.logo {
+		width: 10vw;
+		height: 10vw;
+		float: left;
+
+		img {
+			height: 100%;
+		}
+	}
+
+	.remainTime {
+
+		position: absolute;
+
+		top: 15px;
+		right: 15px;
+
+		p {
+			color: #CCCCCC;
+			font-size: 10px;
+		}
+	}
+
+}
