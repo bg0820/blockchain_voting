@@ -15,7 +15,7 @@ class VoteListItem extends PureComponent {
 					<p>
 						1일 3시간
 					</p>
-				</div>
+				</div> 
 			</div>
 		)
 	}
