@@ -10,6 +10,7 @@ import VoteList from '@pages/VoteList';
 import Voting from '@pages/Voting';
 import VotingSingle from './Pages/VotingSingle';
 import VotingComplete from './Pages/VotingComplete';
+import VotingResult from './Pages/VotingResult';
 
 @inject('page')
 @observer
@@ -38,6 +39,8 @@ class App extends PureComponent {
 			viewDiv = <VotingSingle></VotingSingle>
 		}else if(page.page === 'votingComplete') {
 			viewDiv = <VotingComplete></VotingComplete>
+		}else if(page.page === 'votingResult') {
+			viewDiv = <VotingResult></VotingResult>
 		}
 
 		return (
