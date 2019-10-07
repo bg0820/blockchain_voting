@@ -9,7 +9,7 @@ import vote_mark from '@assets/vote_mark.png';
 
 import './index.scss'
 
-@inject('vote')
+@inject('voteList')
 @inject('page')
 @observer
 class VoteList extends PureComponent {
@@ -17,17 +17,17 @@ class VoteList extends PureComponent {
 	handleVoteItemClick = (e, idx) => {
 		// 페이지 이동
 		const {page} = this.props;
-		page.setPage('voting');
+		page.pageMove('vote');
 	}
 
 	continueBtnClickCallback = (e) => {
-		const {vote} = this.props;
-		vote.setType('continue');
+		const {voteList} = this.props;
+		voteList.setType('continue');
 	}
 
 	resultBtnClickCallback = (e) => {
-		const {vote} = this.props;
-		vote.setType('result');
+		const {voteList} = this.props;
+		voteList.setType('result');
 	}
 
 	formDate = (startDate, endDate) => {
@@ -60,17 +60,17 @@ class VoteList extends PureComponent {
 	}
 
 	render() {
-		const {vote} = this.props;
+		const {voteList} = this.props;
 		
 		let isContinueSelect = "";
 		let isResultSelect = "";
 
-		if(vote.type === 'continue')
+		if(voteList.type === 'continue')
 			isContinueSelect = " select";
-		else if (vote.type === 'result')
+		else if (voteList.type === 'result')
 			isResultSelect =  " select";
 
-		let voteList = vote.list.map((item, i) => {
+		let voteListDiv = voteList.list.map((item, i) => {
 			return (<VoteListItem 
 				key={i}
 				idx={i} 
@@ -94,7 +94,7 @@ class VoteList extends PureComponent {
 					<div className="count">
 						<p>2개 진행중</p>
 					</div>
-					{voteList}
+					{voteListDiv}
 				</div>
 			</div>
 		);

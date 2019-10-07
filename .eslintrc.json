@@ -18,6 +18,11 @@
 		"ecmaFeatures": {
 			"jsx": true
 		},
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true,
+			"experimentalDecorators": true,
+			"jsx": true
+		},
 		"ecmaVersion": 2018,
 		"sourceType": "module"
 	},

@@ -9,7 +9,7 @@ class BottomButtonTemplate extends PureComponent {
 	render() {
 		return (
 			<div className="BottomButtonTemplate">
-				<MainTemplate  isBackBtn={this.props.isBackBtn} isTitle={this.props.isTitle}>
+				<MainTemplate  isBackBtn={this.props.isBackBtn} title={this.props.title}>
 					<div className="verticalSplit">
 						<div className="container">
 							{this.props.children}

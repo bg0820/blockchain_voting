@@ -37,7 +37,7 @@ class OTPAuth extends PureComponent {
 				alert(data.msg);
 			} else {
 				console.log(data);
-				page.setPage('student_number_auth');
+				page.pageMove('student_number_auth');
 			}
 		}).catch(function(error) {
 			console.log(error);

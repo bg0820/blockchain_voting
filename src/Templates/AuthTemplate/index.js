@@ -3,8 +3,9 @@ import { observer, inject } from 'mobx-react';
 
 import Button from '@components/Button';
 import KeypadButton from '@components/KeypadButton'
+
+import MainTemplate from '@templates/MainTemplate';
 import './index.scss';
-import MainTemplate from '../MainTemplate';
 
 @inject('page')
 @observer
@@ -17,7 +18,7 @@ class AuthTemplate extends PureComponent {
 			page.setStudentNumber(page.studentNumber + v);
 
 			if(page.studentNumber.length === 9) {
-				page.setPage('student_number_confrim_auth');
+				page.pageMove('student_number_confrim_auth');
 			}
 		} else if(page.page === 'student_number_confrim_auth') {
 			page.setStudentNumberConfirm(page.studentNumberConfirm + v);
@@ -27,14 +28,14 @@ class AuthTemplate extends PureComponent {
 					alert('학번이 다릅니다.');
 					return;
 				}
-				page.setPage('phone_number_auth');
+				page.pageMove('phone_number_auth');
 			}
 		} else if(page.page === 'phone_number_auth') {
 			page.setPhoneAuthNum(page.phoneAuthNum + v);
 
 			if(page.phoneAuthNum.length === 6) {
 				
-				page.setPage('digital_signature');
+				page.pageMove('digital_signature');
 			}
 		}
 	}
@@ -46,7 +47,7 @@ class AuthTemplate extends PureComponent {
 
 	backPage = () => {
 		const {page} = this.props;
-		page.setPage(page.prevPage);
+		page.pageMove(page.prevPage);
 	}
 
 	clickCallback = (e) => {

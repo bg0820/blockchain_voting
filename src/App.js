@@ -9,9 +9,8 @@ import PhoneAuth from '@pages/PhoneAuth';
 import DigitalSignature from '@pages/DigitalSignature';
 import VoteList from '@pages/VoteList';
 import Voting from '@pages/Voting';
-import VotingSingle from './Pages/VotingSingle';
-import VotingComplete from './Pages/VotingComplete';
-import VotingResult from './Pages/VotingResult';
+import VotingComplete from '@pages/VotingComplete';
+import VotingResult from '@pages/VotingResult';
 import SubInformation from '@pages/SubInformation';
 
 
@@ -38,13 +37,11 @@ class App extends PureComponent {
 			viewDiv = <DigitalSignature></DigitalSignature>
 		} else if(page.page === 'vote_list') {
 			viewDiv = <VoteList></VoteList>
-		} else if(page.page === 'voting') {
+		} else if(page.page === 'vote') {
 			viewDiv = <Voting></Voting>
-		}else if(page.page === 'votingSingle') {
-			viewDiv = <VotingSingle></VotingSingle>
-		}else if(page.page === 'votingComplete') {
+		} else if(page.page === 'vote_complete') {
 			viewDiv = <VotingComplete></VotingComplete>
-		}else if(page.page === 'votingResult') {
+		} else if(page.page === 'vote_result') {
 			viewDiv = <VotingResult></VotingResult>
 		} else if(page.page === 'sub_information') {
 			viewDiv = <SubInformation></SubInformation>

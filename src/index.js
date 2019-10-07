@@ -9,15 +9,19 @@ import App from './App';
 import { Provider } from 'mobx-react'; // MobX 에서 사용하는 Provider
 import PageStore from '@store/Page'; // 페이지 관련 스토어
 import VoteStore from '@store/Vote'; // 페이지 관련 스토어
+import VoteListStore from '@store/VoteList'; // 페이지 관련 스토어
+import ModalStore from '@store/Modal'; // 페이지 관련 스토어
 
-const page = new PageStore(); // 스토어 인스턴스를 만들고
-const vote = new VoteStore(); // 스토어 인스턴스를 만들고
+const page = new PageStore(); // 스토어 인스턴스
+const vote = new VoteStore();
+const voteList = new VoteListStore();
+const modal = new ModalStore(); 
 
 
 import './index.scss';
 
 ReactDOM.render(
-	<Provider page={page} vote={vote}>
+	<Provider page={page} vote={vote} modal={modal} voteList={voteList}>
 		<App />
 	</Provider>, document.getElementById('root'));
 

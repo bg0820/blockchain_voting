@@ -1,32 +1,59 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed} from 'mobx';
 
 export default class Vote {
-	@observable 
-	type = 'continue';
 	@observable
-	list = [{
-		startDate: new Date(2019, 9 - 1, 3),
-		endDate: new Date(2019, 9 - 1, 6),
-		title: '성공회대학교 제 33대 총학생회 선거 어쩌구 저쩌구'
-	},
-	{
-		startDate: new Date(2019, 9 - 1, 3),
-		endDate: new Date(2019, 9 - 1, 6),
-		title: '성공회대학교 IT융합자율학부 학생회장 선거'
-	}];
-	@observable 
-	selectVoteIdx = 0;
-  
-	// continue, result
-	@action setType = (type) => {
-	  this.type = type;
+	candidateGroups = [
+		{
+			title: '늘픔',
+			candidate: [
+				{
+					name: '제임스',
+					position: '정 학생회장',
+					img: '',
+				},
+				{
+					name: '봉구',
+					position: '부 학생회장',
+					img: '',
+				}
+			],
+			select: false
+		},
+		{
+			title: '늘픔',
+			candidate: [
+				{
+					name: '제임스',
+					position: '정 학생회장',
+					img: '',
+				},
+				{
+					name: '봉구',
+					position: '부 학생회장',
+					img: '',
+				}
+			],
+			select: false
+		}
+	];
+	@observable
+	selectCandidate = -1;
+
+	@action voting = (idx) => {
+		this.candidateGroups = this.candidateGroups.map((item, i) => {
+			return (i === idx ? {
+				...item,
+				select: (item.select === true ? false : true)
+			} : {
+				...item,
+				select: false,
+			})
+		});
+
+		if(this.candidateGroups[idx].select === true)
+			this.selectCandidate = idx;
+		else 
+			this.selectCandidate = -1;
 	}
 
-	@action setList = (list) => {
-		this.list = list;
-	}
-	
-	@action selectVote = (idx) => {
-		this.selectVoteIdx = idx;
-	}
 }
