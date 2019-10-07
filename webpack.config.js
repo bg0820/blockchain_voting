@@ -55,16 +55,15 @@ module.exports = env => ({
 			},
 			{
 				test: /\.(png|jpg|svg|gif)/,
-				use: [
-					'file-loader',
-				],
-			},
-		],
+				loader: 'file-loader'
+			}
+		]
 	},
 	resolve: {
 		extensions: ['*', '.js', '.jsx'],
 		alias: {
 			"@root": path.resolve('src'),
+			"@assets": path.resolve('src/Assets'),
 			"@components": path.resolve('src/Components'),
 			"@pages": path.resolve('src/Pages'),
 			"@router": path.resolve('src/Router'),

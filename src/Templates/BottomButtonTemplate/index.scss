@@ -1,0 +1,28 @@
+$color7: #FBFDFF;
+
+.BottomButtonTemplate {
+	width: 100%;
+	height: 100%;
+
+	.verticalSplit {
+		min-height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		.container {
+			height: 100%;
+		}
+
+		.buttonArea {
+			position: relative;
+			width: 100%;
+			padding-bottom: 30px;
+
+			.Button {
+				width: 100%;
+			}
+		}
+	}
+
+}

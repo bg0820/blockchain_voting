@@ -3,13 +3,26 @@
 	height: 100%;
 
 
-}
+	.interactionArea {
+		padding-bottom: 0px;
+	}
 
-.sign {
-    background: #fff;
-		height: 300px;
+	.sign {
+		background: #fff;
+		height: 180px;
 		width: 70%;
 		color: #34C4C2;
 		border-radius: 20px;
 		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+
+		p {
+			text-align: center;
+			line-height: 180px;
+
+			&.infoMsg {
+				font-size: 14px;
+				color: #96E0E0;
+			}
+		}
+	}
 }

@@ -1,15 +1,33 @@
 import React, {PureComponent} from 'react';
 import { observer, inject } from 'mobx-react';
 
-import AuthTemplate from '@templates/Auth';
+import AuthTemplate from '@templates/AuthTemplate';
 import KeypadButton from '@components/KeypadButton';
 
 import './index.scss'
 
 @inject('page')
+@observer
 class StudentNumberConfirm extends PureComponent {
 
 	render() {
+		const {page} = this.props
+		
+		let bubbles = [];
+
+		for(var i = 0 ; i < 9; i++) {
+			let val = '';
+			if(page.studentNumberConfirm.length > i) {
+				val = page.studentNumberConfirm[i];
+			}
+
+			bubbles.push(
+				<div key={i} className="bubble">
+					{val}
+				</div>
+			)
+		}
+
 		return (
 			<div className="StudentNumberConfirm">
 				<AuthTemplate btnValue="인증 완료" isKeypad={true}>
@@ -19,7 +37,7 @@ class StudentNumberConfirm extends PureComponent {
 					</div>
 
 					<div className="inputArea">
-						<input type="text" className="form_control"></input>
+						{bubbles}
 					</div>
 					<div className="inputInfoMsg">
 						<div className="horizontalCenter">

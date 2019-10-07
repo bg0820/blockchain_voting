@@ -4,6 +4,7 @@ import { observer, inject } from 'mobx-react';
 import OTPAuth from '@pages/OTPAuth'
 import StudentNumberAuth from '@pages/StudentNumberAuth';
 import StudentNumberConfirm from '@pages/StudentNumberConfirm';
+import PhoneNumberAuth from '@pages/PhoneNumberAuth';
 import PhoneAuth from '@pages/PhoneAuth';
 import DigitalSignature from '@pages/DigitalSignature';
 import VoteList from '@pages/VoteList';
@@ -29,6 +30,8 @@ class App extends PureComponent {
 			viewDiv = <StudentNumberAuth></StudentNumberAuth>
 		} else if(page.page === 'student_number_confrim_auth') {
 			viewDiv = <StudentNumberConfirm></StudentNumberConfirm>
+		} else if(page.page === 'phone_number_auth') {
+			viewDiv = <PhoneNumberAuth></PhoneNumberAuth>
 		} else if(page.page === 'phone_auth') {
 			viewDiv = <PhoneAuth></PhoneAuth>
 		} else if(page.page === 'digital_signature') {

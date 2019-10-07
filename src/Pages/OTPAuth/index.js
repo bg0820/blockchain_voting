@@ -1,18 +1,48 @@
 import React, {PureComponent} from 'react';
 import { observer, inject } from 'mobx-react';
 
-import AuthTemplate from '@templates/Auth';
+import axios from 'axios';
+import AuthTemplate from '@templates/AuthTemplate';
 
 import './index.scss'
 
 @inject('page')
 class OTPAuth extends PureComponent {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			value: ''
+		};
+	}
+
+	handleChange = (e) => {
+		this.setState({
+			value: e.target.value
+		});
+	}
 
 	clickCallback = (e) => {
 		const {page} = this.props;
-		//if()d
-		page.setPage('schoolId_auth');
-		console.log('btnClick', e);
+
+		axios({
+			method: 'GET',
+			url: 'http://222.238.100.247:3001/otp',
+			params: {
+				otp: this.state.value
+			}
+		}).then(function(result) {
+			let data = result.data;
+			if(data.result === 'failed') {
+				alert(data.msg);
+			} else {
+				console.log(data);
+				page.setPage('student_number_auth');
+			}
+		}).catch(function(error) {
+			console.log(error);
+		})
+
 	} 
 
 	render() {
@@ -25,7 +55,7 @@ class OTPAuth extends PureComponent {
 					</div>
 
 					<div className="inputArea">
-						<input type="text" className="form_control" placeholder="영어 및 숫자로 구성된 10글자를 입력해주세요."></input>
+						<input type="text" value={this.state.value} onChange={this.handleChange} className="form_control" placeholder="영어 및 숫자로 구성된 10글자를 입력해주세요."></input>
 					</div>
 					<div className="inputInfoMsg">
 						<div className="horizontalCenter">

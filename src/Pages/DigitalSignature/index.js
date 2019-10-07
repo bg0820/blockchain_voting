@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import { observer, inject } from 'mobx-react';
 
-import AuthTemplate from '@templates/Auth';
+import AuthTemplate from '@templates/AuthTemplate';
 //import SendButton from '@components/SendButton';
 
 import './index.scss'
@@ -9,7 +9,11 @@ import './index.scss'
 @inject('page')
 class DigitalSignature extends PureComponent {
 
-
+	clickCallback = (e) => {
+		const {page} = this.props;
+		//if()d
+		page.setPage('vote_list');
+	}
 	render() {
 		return (
 			<div className="DigitalSignature">
@@ -19,8 +23,8 @@ class DigitalSignature extends PureComponent {
 						<p className="subTitle">본인 필적 확인용 입니다.</p>
 					</div>
                     <div className ="sign">
-                        
-                        </div>
+                        <p className="infoMsg">서명해 주세요.</p>
+                    </div>
 				</AuthTemplate>
     
             </div>

@@ -9,12 +9,16 @@ class KeypadButton extends PureComponent {
 	}
 
 	handleClick = (e) => {
-		this.props.clickCallback(e);
+		this.props.clickCallback(this.props.value);
 	}
 
 	render() {
+		let clsName = "KeypadButton";
+		if(this.props.bottom)
+			clsName += " bottomElem"
+
 		return (
-			<div className="KeypadButton">
+			<div className={clsName}>
 				<input type="button" value={this.props.value} onClick={this.handleClick}></input>
 			</div>
 		)

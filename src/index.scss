@@ -80,3 +80,16 @@ body {
 		outline: none;
 	}
 }
+
+.I_LEFT_ARROW {
+	background: url('./Assets/left-arrow.svg') no-repeat;
+	background-size: 100% 100%;
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	cursor: pointer;
+	z-index: 100;
+
+}

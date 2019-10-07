@@ -2,6 +2,9 @@ import React, {PureComponent} from 'react';
 import { observer, inject } from 'mobx-react';
 
 
+import james from '@assets/james.png';
+import bongkoo from '@assets/bongkoo.png';
+
 import './index.scss'
 
 @inject('page')
@@ -18,12 +21,12 @@ class SubInformation extends PureComponent {
                 <div className="content">
                     <div className="profileArea">
                         <div className="profile">
-                            <img className="photo" src="/image/james.png"></img>
+                            <img className="photo" src={james}></img>
                             <p className="name">홍길동</p>
                             <p className="departmentInfo">글로컬 IT 학과 16학번</p>
                         </div>
                         <div className="profile">
-                            <img className="photo" src="/image/bongkoo.png"></img>
+                            <img className="photo" src={bongkoo}></img>
                             <p className="name">봉구</p>
                             <p className="departmentInfo">글로컬 IT 학과 16학번</p>
                         </div>

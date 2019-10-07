@@ -4,16 +4,23 @@ import './index.scss';
 
 class VoteListItem extends PureComponent {
 
+	voteListItemClick = (e) => {
+		this.props.clickCallback(e, this.props.idx);
+	}
+
 	render() {
 		return (
-			<div className="VoteListItem">
+			<div className="VoteListItem" onClick={this.voteListItemClick}>
 				<div className="logo">
-					<img></img>
+					<img src={this.props.logo}></img>
 				</div>
-				<div className=""></div>
+				<div className="infoArea">
+					<p className="date">{this.props.time}</p>
+					<p className="title">{this.props.title}</p>
+				</div>
 				<div className="remainTime">
 					<p>
-						1일 3시간
+						{this.props.remain}
 					</p>
 				</div> 
 			</div>

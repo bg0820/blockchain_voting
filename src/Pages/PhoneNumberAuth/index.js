@@ -8,20 +8,37 @@ import Button from '@components/Button';
 import './index.scss'
 
 @inject('page')
-class PhoneAuth extends PureComponent {
-
+@observer
+class PhoneNumberAuth extends PureComponent {
 
 	render() {
+		const {page} = this.props
+		
+		let bubbles = [];
+
+		for(var i = 0 ; i < 6; i++) {
+			let val = '';
+			if(page.phoneAuthNum.length > i) {
+				val = page.phoneAuthNum[i];
+			}
+
+			bubbles.push(
+				<div key={i} className="bubble">
+					{val}
+				</div>
+			)
+		}
+
 		return (
-			<div className="PhoneAuth">
-				<AuthTemplate btnValue="인증문자 전송" clickCallback={this.clickCallback}>
+			<div className="PhoneNumberAuth">
+				<AuthTemplate isKeypad={true}>
 					<div className="infoMsg">
 						<p className="mainTitle">핸드폰 인증</p>
 						<p className="subTitle">핸드폰 한 대로 하나의 투표만 가능합니다.</p>
 					</div>
 
 					<div className="inputArea">
-						<input type="text" className="form_control"></input>
+						{bubbles}
 					</div>
 					<div className="inputInfoMsg">
 						<div className="horizontalCenter">
@@ -34,4 +51,4 @@ class PhoneAuth extends PureComponent {
 	}
 }
 
-export default PhoneAuth;
+export default PhoneNumberAuth;
