@@ -10,8 +10,6 @@ import './index.scss'
 
 @inject('page')
 class SubInformation extends PureComponent {
-
-
 	render() {
 		return (
 			<div className="SubInformation">
