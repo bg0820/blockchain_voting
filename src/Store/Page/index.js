@@ -4,7 +4,7 @@ import { observable, action } from 'mobx';
 export default class Page {
 	// otp_auth, student_number_auth, student_number_confrim_auth, vote_list, voting
 	@observable
-	page = 'otp_auth';
+	page = 'phone_auth';
 	@observable
 	prevPage = '';
 
@@ -17,6 +17,12 @@ export default class Page {
 	studentNumberConfirm = '';
 	@observable
 	phoneAuthNum = '';
+	@observable
+	phoneNumber = '';
+
+	@action setPhoneNumber = (phoneNumber) => {
+		this.phoneNumber = phoneNumber;
+	}
 
   
 	@action setPage = (page) => {

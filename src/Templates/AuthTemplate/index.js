@@ -30,19 +30,24 @@ class AuthTemplate extends PureComponent {
 				}
 				page.pageMove('phone_number_auth');
 			}
-		} else if(page.page === 'phone_number_auth') {
-			page.setPhoneAuthNum(page.phoneAuthNum + v);
+		}
 
-			if(page.phoneAuthNum.length === 6) {
-				
-				page.pageMove('digital_signature');
-			}
+		if(this.props.keyPadChange) {
+			this.props.keyPadChange(v);
 		}
 	}
 
 	handleDeleteKeyPad = (v) => {
 		const {page} = this.props;
-		page.setStudentNumber(page.studentNumber.substring(0, page.studentNumber.length - 1));
+
+		if(page.page === 'student_number_auth') {
+			page.setStudentNumber(page.studentNumber.substring(0, page.studentNumber.length - 1));
+		} else if(page.page === 'student_number_confirm_auth') {
+			page.setStudentNumberConfirm(page.studentNumberConfirm.substring(0, page.studentNumberConfirm.length - 1));
+		} else if(page.page === 'phone_number_auth') {
+			page.setPhoneAuthNum(page.phoneAuthNum.substring(0, page.phoneAuthNum.length - 1));
+		}
+		
 	}
 
 	backPage = () => {

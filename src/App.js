@@ -33,9 +33,7 @@ class App extends PureComponent {
 			viewDiv = <PhoneNumberAuth></PhoneNumberAuth>
 		} else if(page.page === 'phone_auth') {
 			viewDiv = <PhoneAuth></PhoneAuth>
-		} else if(page.page === 'digital_signature') {
-			viewDiv = <DigitalSignature></DigitalSignature>
-		} else if(page.page === 'vote_list') {
+		}  else if(page.page === 'vote_list') {
 			viewDiv = <VoteList></VoteList>
 		} else if(page.page === 'vote') {
 			viewDiv = <Voting></Voting>
