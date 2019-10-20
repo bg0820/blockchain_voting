@@ -57,7 +57,7 @@ class Voting extends PureComponent {
 
 	handleDetailProfile = (e) => {
 		const {page} = this.props;
-		page.setPage('sub_information')
+		page.setPage('vote_sub_info')
 	}
 
 	render() {

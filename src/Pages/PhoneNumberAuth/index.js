@@ -24,8 +24,11 @@ class PhoneNumberAuth extends PureComponent {
 
 	keyPadChange = async (v) => {
 		const {page} = this.props;
-		page.setPhoneAuthNum(page.phoneAuthNum + v);
-		
+
+		if(page.phoneAuthNum.length < 6) {
+			page.setPhoneAuthNum(page.phoneAuthNum + v);
+		}
+
 		if(page.phoneAuthNum.length === 6) {
 			let result = await Util.ServerRequest('/auth/phone/auth', 'GET', {
 				phone: page.phoneNumber,
@@ -36,6 +39,7 @@ class PhoneNumberAuth extends PureComponent {
 				page.setPage('vote_list');
 				alert('인증이 정상적으로 처리되었습니다.')
 			} else {
+				page.setPhoneAuthNum('');
 				alert('인증번호가 다릅니다.');
 			}
 

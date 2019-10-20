@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { hot } from 'react-hot-loader/root';
 import App from './App';
 
 
@@ -25,7 +24,7 @@ ReactDOM.render(
 		<App />
 	</Provider>, document.getElementById('root'));
 
-export default hot(App);
+export default App;
 
 
 //"babel-plugin-transform-decorators-legacy": "^1.3.5",

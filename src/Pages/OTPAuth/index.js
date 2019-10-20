@@ -12,7 +12,8 @@ class OTPAuth extends PureComponent {
 		super(props);
 
 		this.state = {
-			value: ''
+			value: '',
+			errorMsg: ''
 		};
 	}
 
@@ -27,9 +28,9 @@ class OTPAuth extends PureComponent {
 
 		axios({
 			method: 'GET',
-			url: 'http://222.238.100.247:3001/otp',
+			url: 'http://222.238.100.247:3001/auth/otp',
 			params: {
-				otp: this.state.value
+				otp: this.state.value.trim()
 			}
 		}).then(function(result) {
 			let data = result.data;
@@ -64,6 +65,7 @@ class OTPAuth extends PureComponent {
 						<div className="horizontalCenter">
 						<p className="back">‘웹 서비스 > OTP 조회’</p><p> 메뉴를 통해서 확인할 수 있습니다.</p>
 						</div>
+						<p>{this.state.errorMsg}</p>
 					</div>
 				</AuthTemplate>
 			</div>

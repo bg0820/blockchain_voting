@@ -2,9 +2,10 @@
 import { observable, action } from 'mobx';
 
 export default class Page {
-	// otp_auth, student_number_auth, student_number_confrim_auth, vote_list, voting
+	// otp_auth, student_number_auth, student_number_confrim_auth, vote_list, voting,
+	// phone_auth, phone_number_auth
 	@observable
-	page = 'phone_auth';
+	page = 'vote_result';
 	@observable
 	prevPage = '';
 

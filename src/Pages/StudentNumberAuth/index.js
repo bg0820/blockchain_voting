@@ -10,6 +10,18 @@ import './index.scss'
 @observer
 class StudentNumberAuth extends PureComponent {
 
+	keyPadChange = (v) => {
+		const {page} = this.props;
+		
+		if(page.studentNumber.length < 9) {
+			page.setStudentNumber(page.studentNumber + v);
+		}
+
+		if(page.studentNumber.length === 9) {
+			page.pageMove('student_number_confrim_auth');
+		}
+	}
+
 	render() {
 		const {page} = this.props
 		
@@ -30,7 +42,7 @@ class StudentNumberAuth extends PureComponent {
 		
 		return (
 			<div className="StudentNumberAuth">
-				<AuthTemplate btnValue="인증 완료" isKeypad={true}>
+				<AuthTemplate btnValue="인증 완료" isKeypad={true} keyPadChange={this.keyPadChange}>
 					<div className="infoMsg">
 						<p className="mainTitle">학번 입력</p>
 						<p className="subTitle">학번을 입력해주세요.</p>

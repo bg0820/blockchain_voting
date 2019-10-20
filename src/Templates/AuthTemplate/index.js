@@ -14,24 +14,6 @@ class AuthTemplate extends PureComponent {
 	handleKeyPad = (v) => {
 		const {page} = this.props;
 
-		if(page.page === 'student_number_auth') {
-			page.setStudentNumber(page.studentNumber + v);
-
-			if(page.studentNumber.length === 9) {
-				page.pageMove('student_number_confrim_auth');
-			}
-		} else if(page.page === 'student_number_confrim_auth') {
-			page.setStudentNumberConfirm(page.studentNumberConfirm + v);
-
-			if(page.studentNumberConfirm.length === 9) {
-				if(page.studentNumber !== page.studentNumberConfirm) {
-					alert('학번이 다릅니다.');
-					return;
-				}
-				page.pageMove('phone_number_auth');
-			}
-		}
-
 		if(this.props.keyPadChange) {
 			this.props.keyPadChange(v);
 		}

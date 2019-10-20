@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import { observer, inject } from 'mobx-react';
+import { hot } from 'react-hot-loader/root';
 
 import OTPAuth from '@pages/OTPAuth'
 import StudentNumberAuth from '@pages/StudentNumberAuth';
@@ -41,7 +42,7 @@ class App extends PureComponent {
 			viewDiv = <VotingComplete></VotingComplete>
 		} else if(page.page === 'vote_result') {
 			viewDiv = <VotingResult></VotingResult>
-		} else if(page.page === 'sub_information') {
+		} else if(page.page === 'vote_sub_info') {
 			viewDiv = <SubInformation></SubInformation>
 		}
 
@@ -57,4 +58,4 @@ class App extends PureComponent {
 }
  
 
-export default App;
+export default hot(App);
