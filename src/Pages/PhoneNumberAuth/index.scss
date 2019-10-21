@@ -3,4 +3,22 @@
 	height: 100%;
 
 
+	.reSend {
+		margin-top: 15px;
+
+		display: flex;
+		justify-content: center;
+
+		&>* {
+			float: left;
+		}
+
+
+		.Button {
+			width: 70px;
+
+
+		}
+	}
+
 }

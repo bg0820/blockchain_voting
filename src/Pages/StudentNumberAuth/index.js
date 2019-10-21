@@ -18,7 +18,7 @@ class StudentNumberAuth extends PureComponent {
 		}
 
 		if(page.studentNumber.length === 9) {
-			page.pageMove('student_number_confrim_auth');
+			page.pageMove('student_number_confirm_auth');
 		}
 	}
 
@@ -35,7 +35,7 @@ class StudentNumberAuth extends PureComponent {
 
 			bubbles.push(
 				<div key={i} className="bubble">
-					{val}
+					<p>{val}</p>
 				</div>
 			)
 		}

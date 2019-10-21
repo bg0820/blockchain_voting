@@ -9,6 +9,16 @@ class VoteListItem extends PureComponent {
 	}
 
 	render() {
+		let remainDiv = (
+			<p>
+				{this.props.remain}
+			</p>
+		);
+
+		if(this.props.isEnd) {
+			remainDiv = null;
+		}
+
 		return (
 			<div className="VoteListItem" onClick={this.voteListItemClick}>
 				<div className="logo">
@@ -19,9 +29,7 @@ class VoteListItem extends PureComponent {
 					<p className="title">{this.props.title}</p>
 				</div>
 				<div className="remainTime">
-					<p>
-						{this.props.remain}
-					</p>
+					{remainDiv}
 				</div> 
 			</div>
 		)

@@ -28,6 +28,7 @@ $white: #fff;
 	padding: 0;
 	border: 0;
 	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
 }
 
 a {
@@ -73,11 +74,11 @@ body {
 	border-radius: 0;
 	-webkit-border-radius: 0;
 	-webkit-appearance: none;
-	font-size: 13px;
+	font-size: 12px;
 	text-align: center;
 
 	&::placeholder {
-		color: $color3;
+		color: $color7;
 	}
 
 	&:focus {
@@ -86,7 +87,7 @@ body {
 }
 
 .I_LEFT_ARROW {
-	background: url('./Assets/left-arrow.svg') no-repeat;
+	background: url('./Assets/left-arrow.svg') no-repeat !important;
 	background-size: 100% 100%;
 	width: 25px;
 	height: 25px;

@@ -17,7 +17,7 @@ class PhoneNumberAuth extends PureComponent {
 		super(props);
 
 		this.state = {
-			time : 300
+			time : 180
 		};
 		this.timeInterval = null;
 	}
@@ -31,16 +31,23 @@ class PhoneNumberAuth extends PureComponent {
 
 		if(page.phoneAuthNum.length === 6) {
 			let result = await Util.ServerRequest('/auth/phone/auth', 'GET', {
+				id: page.studentNumber,
 				phone: page.phoneNumber,
+				phoneIMEI: localStorage.deviceID,
 				key: page.phoneAuthNum
 			});
 	
 			if(result.result === 'success') {
 				page.setPage('vote_list');
+
+				localStorage.token = result.token;
+				localStorage.auth = 'true';
+				localStorage.walletAddr = result.walletAddr;
+
 				alert('인증이 정상적으로 처리되었습니다.')
 			} else {
 				page.setPhoneAuthNum('');
-				alert('인증번호가 다릅니다.');
+				alert(result.msg);
 			}
 
 		}
@@ -52,17 +59,36 @@ class PhoneNumberAuth extends PureComponent {
 			par.setState({
 				time: par.state.time - 1
 			});
+			if(par.state.time === 0)
+				clearInterval(par.timeInterval);
 		}, 1000);
+
+		console.log(this.timeInterval);
 	}
 
-	reSend() {
-		clearInterval(timeInterval);
-		let par = this;
-		this.timeInterval = setInterval(function() {
-			par.setState({
-				time: par.state.time - 1
+	reSend = async () => {
+		const {page} = this.props
+
+		let result = await Util.ServerRequest('/auth/phone/resend', 'GET', {
+			phone: page.phoneNumber
+		});
+
+		if(result.result === 'success') {
+			clearInterval(this.timeInterval);
+
+			this.setState({
+				time: 180
 			});
-		}, 1000);
+
+			let par = this;
+			this.timeInterval = setInterval(function() {
+				par.setState({
+					time: par.state.time - 1
+				});
+				if(par.state.time === 0)
+					clearInterval(par.timeInterval);
+			}, 1000);
+		}
 	}
 
 
@@ -70,6 +96,11 @@ class PhoneNumberAuth extends PureComponent {
 	render() {
 		const {page} = this.props
 	
+		let time = this.state.time;
+		let min = Math.floor(time / 60);
+		let sec = Math.floor(time % 60);
+
+		let timeStr = (min < 10 ? '0' + min : min) + ":" + (sec < 10 ? '0' + sec : sec);
 		let bubbles = [];
 
 		for(var i = 0 ; i < 6; i++) {
@@ -80,7 +111,7 @@ class PhoneNumberAuth extends PureComponent {
 
 			bubbles.push(
 				<div key={i} className="bubble">
-					{val}
+					<p>{val}</p>
 				</div>
 			)
 		}
@@ -98,10 +129,17 @@ class PhoneNumberAuth extends PureComponent {
 					</div>
 					<div className="inputInfoMsg">
 						<div className="horizontalCenter">
-							<p>입력된 핸드폰 번호로 전송된</p><p className="back">인증문자 6글자</p><p>를 입력해주세요.</p>
+							<p>입력된 핸드폰 번호로 전송된</p>
+						</div>
+						<div className="horizontalCenter">
+							<p className="back">인증문자 6글자</p><p>를 입력해주세요.</p>
+						</div>
+
+						<div className="reSend">
+							<p className="time">{timeStr}</p>
+							<Button value="재전송" clickCallback={this.reSend}></Button>
 						</div>
 					</div>
-					{this.state.time}
 				</AuthTemplate>
 			</div>
 		);

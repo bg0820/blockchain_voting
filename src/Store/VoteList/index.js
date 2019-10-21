@@ -4,22 +4,11 @@ export default class VoteList {
 	@observable 
 	type = 'continue';
 	@observable
-	list = [{
-		startDate: new Date(2019, 9 - 1, 3),
-		endDate: new Date(2019, 9 - 1, 6),
-		title: '성공회대학교 제 33대 총학생회 선거 어쩌구 저쩌구'
-	},
-	{
-		startDate: new Date(2019, 9 - 1, 3),
-		endDate: new Date(2019, 9 - 1, 6),
-		title: '성공회대학교 IT융합자율학부 학생회장 선거'
-	}];
+	list = [];
 	@observable
-	endList = [{
-		startDate: new Date(2019, 9 - 1, 3),
-		endDate: new Date(2019, 9 - 1, 6),
-		title: '성공회대학교 미디어컨텐츠융합자율학부'
-	}];
+	endList = [];
+	@observable 
+	selectListIdx = 0;
 	@observable 
 	selectVoteIdx = 0;
   
@@ -37,6 +26,11 @@ export default class VoteList {
 	}
 	
 	@action selectVote = (idx) => {
-		this.selectVoteIdx = idx;
+		this.selectListIdx = idx;
+		if(this.type === 'continue') {
+			this.selectVoteIdx = this.list[idx].voteIdx;
+		} else {
+			this.selectVoteIdx = this.endList[idx].voteIdx;
+		}
 	}
 }

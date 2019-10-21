@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import { observer, inject } from 'mobx-react';
 
+import axios from 'axios';
 import BottomButtonTemplate from '@templates/BottomButtonTemplate';
 
 import Button from '@components/Button';
@@ -13,9 +14,47 @@ import './index.scss'
 
 @inject('page')
 @inject('vote')
+@inject('voteList')
 @inject('modal')
 @observer
 class Voting extends PureComponent {
+
+	componentDidMount() {
+		this.getVoteDetail();
+	}
+
+	getVoteDetail = async () => {
+		const {voteList, vote} = this.props;
+
+		let result = await axios({
+			method: 'GET',
+			url: 'http://222.238.100.247:3001/vote/detail',
+			params: {
+				voteIdx: voteList.selectVoteIdx
+			}
+		});
+		let data = result.data;
+
+		if(data.result === 'success') {
+			for(var i = 0 ; i < data.data.length; i++) {
+				data.data[i].select = false;
+			}
+
+			vote.candidateGroupInit(data.data);
+		}
+	}
+
+	handleVoteTouchAgree = (e) => {
+		const {vote} = this.props;
+
+		vote.setVote(1);
+	}
+
+	handleVoteTouchOpp = (e) => {
+		const {vote} = this.props;
+		
+		vote.setVote(2);
+	}
 
 	handleVoteTouch = (e) => {
 		const {vote} = this.props;
@@ -23,10 +62,12 @@ class Voting extends PureComponent {
 
 		vote.voting(idx);
 	}
+
 	callbackAbstention = (result) => {
-		const {page} = this.props;
+		const {page, vote} = this.props;
 		
 		if(result === 'ok') {
+			vote.setVote(3);
 			page.pageMove('vote_complete');
 		}
 	}
@@ -37,7 +78,7 @@ class Voting extends PureComponent {
 
 	handleAbstention = (e) => {
 		const {modal} = this.props;
-		modal.show('기권을 하시겠습니까?', '아 뭐라고 쓰지 쓸 말이 없네…', 'dialog', this.callbackAbstention);
+		modal.show('알림', '기권 하시겠습니까?', 'dialog', this.callbackAbstention);
 	}
 
 	handleVoting = (e) => {
@@ -48,20 +89,31 @@ class Voting extends PureComponent {
 			item.select === true ? isSelectCnt++ : null
 		});
 
-		if(isSelectCnt === 0) {
-			modal.show('후보를 선택해 주세요.', '기권을 하던지 후보를 투표 하던지, 하나만 해', 'ok', this.callbackVoting);
+		if(vote.candidateGroups.length === 1) {
+			if(vote.vote === 0) {
+				modal.show('알림', '투표를 해주세요.', 'ok', this.callbackVoting);
+			} else {
+				page.pageMove('vote_complete');
+			}
 		} else {
-			page.pageMove('vote_complete');
+			if(isSelectCnt === 0) {
+				modal.show('알림', '후보를 선택해 주세요.', 'ok', this.callbackVoting);
+			} else {
+				page.pageMove('vote_complete');
+			}
 		}
 	}
 
-	handleDetailProfile = (e) => {
-		const {page} = this.props;
+	handleDetailProfile = (idx) => {
+		const {page, vote} = this.props;
+		vote.setSubSelect(idx);
 		page.setPage('vote_sub_info')
 	}
 
 	render() {
-		const {vote} = this.props;
+		const {vote, voteList} = this.props;
+
+		console.log(JSON.parse(JSON.stringify(vote.candidateGroups)));
 
 		let buttonDiv = (
 			<div className="split">
@@ -75,14 +127,14 @@ class Voting extends PureComponent {
 				<div className="voteSelect">
 					<div className="card">
 						<p>찬성</p>
-						<img src={vote_mark}></img> 
+						<img className={ vote.vote === 1 ? 'VoteMark select' : 'VoteMark' } src={vote_mark}  onClick={this.handleVoteTouchAgree} ></img> 
 					</div>
 				</div>
 
 				<div className="voteSelect">
 					<div className="card">
 						<p>반대</p>
-						<img src={vote_mark}></img> 
+						<img className={ vote.vote === 2 ? 'VoteMark select' : 'VoteMark' }  src={vote_mark}  onClick={this.handleVoteTouchOpp} ></img> 
 					</div>
 				</div>
 			</React.Fragment>
@@ -104,7 +156,7 @@ class Voting extends PureComponent {
 								return (
 									<div className="profile" key={j}>
 										<div className="imageWapper">
-											<img src={james}></img> 
+											<img src={candidate.img}></img> 
 										</div>
 										<p className="name">{candidate.name}</p>
 										<p className="role">{candidate.position}</p>
@@ -114,7 +166,7 @@ class Voting extends PureComponent {
 							
 						}
                         <div className="voteArea">
-                            <Button value='경력 및 공약' style='reverse' clickCallback={this.handleDetailProfile}></Button>
+                            <Button value='경력 및 공약' style='reverse' clickCallback={() => this.handleDetailProfile(i)}></Button>
                             { 
 								len !== 1 ? (
 									<div className="center" >
@@ -131,7 +183,7 @@ class Voting extends PureComponent {
 
 		return (
 			<div className="Voting">
-				<BottomButtonTemplate isBackBtn={true} title='테스트' buttonDiv={buttonDiv}>
+				<BottomButtonTemplate isBackBtn={true} title={voteList.list[ voteList.selectListIdx].name} buttonDiv={buttonDiv}>
 					{candidate}
 					{solo}
 				</BottomButtonTemplate>

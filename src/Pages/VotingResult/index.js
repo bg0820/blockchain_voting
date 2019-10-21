@@ -4,44 +4,54 @@ import { observer, inject } from 'mobx-react';
 import BottomButtonTemplate from '@templates/BottomButtonTemplate';
 import Button from '@components/Button';
 import Chart from '@components/Chart';
-
+import StickChart from '@components/StickChart';
 
 import './index.scss'
 
+@inject('voteList')
+@inject('vote')
 @inject('page')
 class VotingResult extends PureComponent {
 	clickCallback = (e) => {
 	}
 
 	render() {
+		const {voteList, vote} = this.props;
+
+		let graph = null;
+
 		return (
 			<div className="VotingResult">
-				<BottomButtonTemplate isBackBtn={true} title='성공회대학교 제 33대 총학생회 선거' buttonDiv={null}>
+				<BottomButtonTemplate isBackBtn={true} title={voteList.endList[ voteList.selectListIdx].name} buttonDiv={null}>
 					<div className="content">
 						<div className="statistics">
 							<div className="chartWrap">
-								<Chart></Chart>
+								<Chart color="#17A6FF" isChart={true} value={90} str="개표율 "></Chart>
 							</div>
 							<div className="chartWrap">
-								<Chart></Chart>
+								<Chart color="#7F9AF7" isChart={true} value={75} str="투표율"></Chart>
+							</div>
+							<div className="chartWrap">
+								<Chart value={1522} str="투표자 수"></Chart>
+							</div>
+							<div className="chartWrap">
+								<Chart value={30} str="기권 수"></Chart>
 							</div>
 						</div>
 						<div className="article">
 							<p className="info">투표 결과</p>
 							<div className="card">
 								<div className="graph">
-									<div className="candidate">
-										<p className="term">기호 1번</p>
-										<span className="stick"></span>
-									</div>   
-									<div className="candidate">
-										<p className="term">기호 2번</p>
-										<span className="stick"></span>
-									</div>    
-									<div className="candidate">
-										<p className="term">기권</p>
-										<span className="stick"></span>
-									</div>
+									<p className="term">기호 1번</p>
+									<StickChart percent={80} color="#35D0A4"></StickChart>
+								</div>
+								<div className="graph">
+									<p className="term">기호 2번</p>
+									<StickChart percent={20} color="#4192FF"></StickChart>
+								</div>    
+								<div className="graph">
+									<p className="term red">기권</p>
+									<StickChart percent={0} color="#FF7171"></StickChart>
 								</div>
 							</div>
                   	  	</div>
@@ -63,12 +73,7 @@ class VotingResult extends PureComponent {
 										</div>
 										<p className="name">모건 프리먼</p>
 										<p className="role">부 학생회장</p>
-									</div>    
-									<div className="voteArea">
-										<p>이 위치에
-											뭐를 넣으면
-											좋을지 안정함</p>
-									</div>
+									</div>  
 								</div>
 							</div>
 						</div>

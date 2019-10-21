@@ -60,9 +60,8 @@ class AuthTemplate extends PureComponent {
 					<KeypadButton value="9" clickCallback={this.handleKeyPad}></KeypadButton>
 					<div></div>
 					<KeypadButton value="0" bottom={true} clickCallback={this.handleKeyPad}></KeypadButton>
-					<div className="deleteKey bottomElem" onClick={this.handleDeleteKeyPad}>
-						<span className="I_LEFT_ARROW relative"></span>
-					</div>
+					<KeypadButton bottom={true}  isDeleteKey={true} clickCallback={this.handleDeleteKeyPad}></KeypadButton>
+					
 				</div>
 			);
 		}

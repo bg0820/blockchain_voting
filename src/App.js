@@ -19,6 +19,21 @@ import SubInformation from '@pages/SubInformation';
 @observer
 class App extends PureComponent {
  
+	constructor(props) {
+		super(props);
+		if(typeof Android !== "undefined" && Android !== null) {
+			let deviceID = Android.getDeviceID();
+			localStorage.deviceID = deviceID;
+		} else {
+			localStorage.deviceID = '4f0d89e75f475986';
+		}
+
+		const {page} = this.props;
+
+		if(localStorage.token !== undefined) {
+			page.setPage('vote_list');
+		}
+	}
 	render() {
 		let viewDiv = null;
 
@@ -28,7 +43,7 @@ class App extends PureComponent {
 			viewDiv = <OTPAuth></OTPAuth>
 		} else if(page.page === 'student_number_auth') {
 			viewDiv = <StudentNumberAuth></StudentNumberAuth>
-		} else if(page.page === 'student_number_confrim_auth') {
+		} else if(page.page === 'student_number_confirm_auth') {
 			viewDiv = <StudentNumberConfirm></StudentNumberConfirm>
 		} else if(page.page === 'phone_number_auth') {
 			viewDiv = <PhoneNumberAuth></PhoneNumberAuth>

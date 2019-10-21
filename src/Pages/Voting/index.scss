@@ -8,6 +8,21 @@ $white: #FBFDFF;
 		margin-bottom: 30px;
 	}
 
+
+	.voteSelect {
+		img {
+			width: 50px;
+			height: 50px;
+
+			opacity: 0.3;
+
+			&.select {
+
+				opacity: 1.0;
+			}
+		}
+	}
+
 	.Candidate {
 		margin-bottom: 25px;
 

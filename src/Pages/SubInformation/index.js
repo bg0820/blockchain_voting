@@ -9,44 +9,69 @@ import MainTemplate from '@templates/MainTemplate';
 import './index.scss'
 
 @inject('page')
+@inject('vote')
 class SubInformation extends PureComponent {
 	render() {
+		const {vote} = this.props;
+		
+		let candidateGroup = vote.candidateGroups[vote.subSelect];
+		console.log(JSON.parse(JSON.stringify(candidateGroup)));
+		let name = '기호 ' + (vote.subSelect + 1) + '번 (' + candidateGroup.title +')';
+
+		let candidate = candidateGroup.candidate;
+
+		let commit = candidateGroup.commit.split('<br/>');
+		let oneCareer = candidate[0].career.split('<br/>');
+		let twoCareer = candidate[1].career.split('<br/>');
+
+		let oneCareerArr = [];
+		let twoCareerArr = [];
+		let commitArr = [];
+
+		oneCareerArr = oneCareer.map((item, i) => {
+			return (<p key={i} className="career">{item}</p>)
+		})
+
+		twoCareerArr = twoCareer.map((item, i) => {
+			return (<p key={i} className="career">{item}</p>)
+		});
+
+		commitArr = commit.map((item, i) => {
+			return (<p key={i} className="pledge">{item}</p>)
+		})
+
+		//vote.candidateGroups[vote.subSelect]
 		return (
 			<div className="SubInformation">
-				<MainTemplate isCloseBtn={true} subTitle="기호 1번 (늘픔)">
+				<MainTemplate isCloseBtn={true} subTitle={name}>
 
 					<div className="box">
 						<div className="profileArea">
 							<div className="profile">
-								<img className="photo" src={james}></img>
-								<p className="name">홍길동</p>
-								<p className="departmentInfo">글로컬 IT 학과 16학번</p>
+								<img className="photo" src={candidate[0].img}></img>
+								<p className="name">{candidate[0].name}</p>
+								<p className="departmentInfo">{candidate[0].departmentName}</p>
+								<p className="yearNum">{candidate[0].id.substring(2, 4) + '학번'}</p>
 							</div>
 							<div className="profile">
-								<img className="photo" src={bongkoo}></img>
-								<p className="name">봉구</p>
-								<p className="departmentInfo">글로컬 IT 학과 16학번</p>
+								<img className="photo" src={candidate[1].img}></img>
+								<p className="name">{candidate[1].name}</p>
+								<p className="departmentInfo">{candidate[1].departmentName}</p>
+								<p className="yearNum">{candidate[1].id.substring(2, 4) + '학번'}</p>
 							</div>
 						</div>
 						<div className="careerArea">
 							<div className="subtitle">경력</div>
 							<div className="careerWrap">
-								<p className="career">IT융합 1대 학생회장</p>
-								<p className="career">청년다방 알바 경력 2년</p>
-								<p className="career">택배 상하차 경력 1년</p>
-								<p className="career">편의점 알바 경력 1개월</p>
+								{oneCareerArr}
 							</div>
 							<div className="careerWrap">
-								<p className="career">IT융합 1대 부학생회장</p>
+								{twoCareerArr}
 							</div>
 						</div>
 						<div className="pledgeArea">
 							<div className="subtitle">공약</div>
-							<p className="pledge">1. 성공회대를 국회로</p>
-							<p className="pledge">2. 기말고사 폐지</p>
-							<p className="pledge">3. 중간고사 폐지</p>
-							<p className="pledge">4. 절대평가로 변경</p>
-							<p className="pledge">5. 야식사업 매일</p>
+							{commitArr}
 						</div>
 					</div>
 				

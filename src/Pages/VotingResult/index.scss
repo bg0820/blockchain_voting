@@ -21,7 +21,7 @@ $white: #FBFDFF;
 			.chartWrap {
 				float: left;
 				width: 25%;
-				height: 150px;
+				height: 130px;
 				padding: 5px;
 			}
 		}
@@ -40,12 +40,36 @@ $white: #FBFDFF;
 			}
 
 			.card {
-				display: flex;
-				position: relative;
+				overflow: hidden;
 				background: $white;
 				box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 				border-radius: 15px;
-				padding: 10px;
+				padding: 15px 10px;
+
+				.graph {
+					display: flex;
+					flex-direction: row;
+					height: 35px;
+
+
+					.term {
+						padding-left: 10px;
+						line-height: 35px;
+						flex: 1;
+					}
+
+					.StickChart {
+						flex: 4;
+						overflow: hidden;
+					}
+
+					&>* {
+						float: left;
+					}
+
+					clear: both;
+				}
+
 
 				.horizontalList {
 					width: 100%;
@@ -56,57 +80,24 @@ $white: #FBFDFF;
 					}
 				}
 
-				.graph {
-					height: 100%;
 
-					&>* {
-						float: left;
-						clear: left;
-						height: 33.3333%;
-						padding: 20px 10px;
-					}
-				}
+				p {
+					text-align: left;
+					font-size: 14px;
 
-				.candidate {
-					overflow: hidden;
-					position: relative;
-					float: left;
-					padding: 0px 15px;
+					&.term {
+						color: #646464;
 
-					.stick {
-						width: 46%;
-						height: 20px;
-						background: red;
-					}
-
-					p {
-						text-align: center;
-						font-size: 14px;
-
-						&.term {
-							color: #2D3830;
-						}
-
-						&.role {
-							color: #ABB2B0;
+						&.red {
+							color: #FF6464;
 						}
 					}
-				}
 
-				.voteArea {
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: center;
-					height: 100%;
-
-					p {
-						margin-top: 5px;
+					&.role {
 						color: #ABB2B0;
-						font-size: 13px;
 					}
-
 				}
+
 
 				.profile {
 					overflow: hidden;

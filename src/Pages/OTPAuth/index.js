@@ -44,7 +44,15 @@ class OTPAuth extends PureComponent {
 			console.log(error);
 		})
 
-	} 
+	}
+	
+	handleKeyDown= (e) => {
+		console.log(window.event.keyCode);
+		if (window.event.keyCode == 13) {
+			// 엔터키가 눌렸을 때 실행할 내용
+			login();
+	   }
+	}
 
 	render() {
 		return (
@@ -56,7 +64,7 @@ class OTPAuth extends PureComponent {
 					</div>
 
 					<div className="inputArea">
-						<input type="text" value={this.state.value} onChange={this.handleChange} className="form_control" placeholder="영어 및 숫자로 구성된 10글자를 입력해주세요."></input>
+						<input type="text" value={this.state.value} onKeyDown={this.handleKeyDown} onChange={this.handleChange} className="form_control" placeholder="영어 및 숫자로 구성된 10글자를 입력해주세요."></input>
 					</div>
 					<div className="inputInfoMsg">
 						<div className="horizontalCenter">

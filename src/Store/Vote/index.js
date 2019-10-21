@@ -2,43 +2,33 @@ import { observable, action, computed} from 'mobx';
 
 export default class Vote {
 	@observable
-	candidateGroups = [
-		{
-			title: '늘픔',
-			candidate: [
-				{
-					name: '제임스',
-					position: '정 학생회장',
-					img: '',
-				},
-				{
-					name: '봉구',
-					position: '부 학생회장',
-					img: '',
-				}
-			],
-			select: false
-		},
-		{
-			title: '늘픔',
-			candidate: [
-				{
-					name: '제임스',
-					position: '정 학생회장',
-					img: '',
-				},
-				{
-					name: '봉구',
-					position: '부 학생회장',
-					img: '',
-				}
-			],
-			select: false
-		}
-	];
+	candidateGroups = [];
 	@observable
 	selectCandidate = -1;
+	@observable
+	vote = 0;
 
+
+	@observable
+	subSelect = 0;
+
+
+	@action setSubSelect = (idx) => {
+		this.subSelect = idx;
+	}
+
+	@action setVote = (vote) => {
+		if(this.vote === vote) {
+			this.vote = 0;
+		} else {
+			this.vote = vote;
+		}
+	}
+
+	@action candidateGroupInit = (data) => {
+		this.candidateGroups = data;
+	}
+	
 	@action voting = (idx) => {
 		this.candidateGroups = this.candidateGroups.map((item, i) => {
 			return (i === idx ? {

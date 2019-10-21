@@ -5,7 +5,7 @@ export default class Page {
 	// otp_auth, student_number_auth, student_number_confrim_auth, vote_list, voting,
 	// phone_auth, phone_number_auth
 	@observable
-	page = 'vote_result';
+	page = 'otp_auth';
 	@observable
 	prevPage = '';
 

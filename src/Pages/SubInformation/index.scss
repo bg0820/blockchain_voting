@@ -41,10 +41,10 @@
 	.box {
 		width: 100%;
 		height: 100%;
-		background: #fff;
+		background: #FBFDFF;
 		border-radius: 15px;
 		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-		padding: 20px 30px;
+		padding: 20px 20px;
 
 		.profileArea {
 			width: 100%;
@@ -61,8 +61,7 @@
 				align-items: center;
 
 				img {
-					width: 75px;
-					height: 75px;
+					height: 100px;
 				}
 
 				p {
@@ -75,6 +74,13 @@
 
 					&.departmentInfo {
 						color: #ABB2B0;
+						text-align: center;
+					}
+
+					&.yearNum {
+						margin-top: 0px;
+						color: #ABB2B0;
+						text-align: center;
 					}
 				}
 			}
@@ -85,7 +91,7 @@
 			color: #2D3830;
 			font-size: 14px;
 			font-weight: bold;
-			margin-top: 5px;
+			margin-top: 10px;
 			margin-bottom: 10px;
 		}
 
@@ -93,16 +99,17 @@
 			width: 100%;
 			border-bottom: 1px solid #CCCCCC;
 			overflow: hidden;
-			padding: 0px 5px 15px 5px;
+			padding: 0px 0px 15px 0px;
 
 			.careerWrap {
+				padding: 0px 5px;
 				float: left;
 				width: 50%;
 				color: #2D3830;
 				font-size: 14px;
 
 				.career {
-
+					text-align: center;
 					margin-bottom: 10px;
 				}
 			}

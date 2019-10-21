@@ -23,7 +23,7 @@ class StudentNumberConfirm extends PureComponent {
 				alert('학번이 다릅니다.');
 				return;
 			}
-			page.pageMove('phone_number_auth');
+			page.pageMove('phone_auth');
 		}
 	}
 
@@ -40,7 +40,7 @@ class StudentNumberConfirm extends PureComponent {
 
 			bubbles.push(
 				<div key={i} className="bubble">
-					{val}
+					<p>{val}</p>
 				</div>
 			)
 		}
