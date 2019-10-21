@@ -1,127 +1,131 @@
 .SubInformation {
-    padding: 0px 20px 20px 20px;
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-    .top {
-        position: relative;
-        height: 60px;
-        line-height: 60px;
-        width: 100%;
-
-        
-        .I_CLOSE {
-            position: absolute;
-            top: 14px;
-            right: 10px;
-            border: solid #fff;
-            border-width: 0px 0px 0px 3px;
-            transform: rotate(45deg);
-            height:30px;
+	.top {
+		position: relative;
+		height: 60px;
+		line-height: 60px;
+		width: 100%;
 
 
-            &::after {
-                content: '';
-                position: absolute;
-                height: 30px;
-                left: -2px;
-                border: solid #fff;
-                border-width: 0px 0px 0px 3px;
-                transform: rotate(90deg);
-            }
-        }
-
-        p {
-            color: #FFFFFF;
-            font-size: 18px;
-            padding-left: 10px;
-        }
-
-    }
-    
-    .content {
-        width: 100%;
-        height: 100%;
-        background: #fff;
-        border-radius: 15px;
-        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-        padding: 20px 40px;
-
-        .profileArea {
-            width: 100%;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #CCCCCC;
-            overflow: hidden;
-
-            .profile {
-                float: left;
-                width: 50%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                img {
-                    width: 75px;
-                    height: 75px;
-                }
-
-                p {
-                    font-size: 14px;
-                    margin-top: 5px;
-                    &.name {
-                        color: #2D3830;
-                    }
-                    &.departmentInfo {
-                        color: #ABB2B0;
-                    }
-                }
-            }
-        }
-
-        .subtitle {
-            text-align : center;
-            color : #2D3830;
-            font-size: 14px;
-            font-weight: bold;
-            margin-top: 4pt;
+		.I_CLOSE {
+			position: absolute;
+			top: 14px;
+			right: 10px;
+			border: solid #fff;
+			border-width: 0px 0px 0px 3px;
+			transform: rotate(45deg);
+			height: 30px;
 
 
-        }
+			&::after {
+				content: '';
+				position: absolute;
+				height: 30px;
+				left: -2px;
+				border: solid #fff;
+				border-width: 0px 0px 0px 3px;
+				transform: rotate(90deg);
+			}
+		}
 
-        .careerArea {
-            width: 100%;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #CCCCCC;
-            overflow: hidden;
+		p {
+			color: #FFFFFF;
+			font-size: 18px;
+			padding-left: 10px;
+		}
 
+	}
 
-            .career1 {
-            float: left;
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color : #2D3830;
-            font-size: 14px;
-            }
-        }
+	.box {
+		width: 100%;
+		height: 100%;
+		background: #FBFDFF;
+		border-radius: 15px;
+		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+		padding: 20px 20px;
 
-        .pledgeArea {
-            width: 100%;
-            padding-bottom: 20px;
-            //border-bottom: 1px solid #CCCCCC;
-            overflow: hidden;
-            color : #2D3830;
-            font-size: 14px;
+		.profileArea {
+			width: 100%;
+			padding-bottom: 20px;
+			border-bottom: 1px solid #CCCCCC;
+			overflow: hidden;
 
-            .pledge {
-                margin-left:10pt;
-                margin-bottom: 10pt;
-                
-            }
-        }
-    }
+			.profile {
+				float: left;
+				width: 50%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+
+				img {
+					height: 100px;
+				}
+
+				p {
+					font-size: 14px;
+					margin-top: 5px;
+
+					&.name {
+						color: #2D3830;
+					}
+
+					&.departmentInfo {
+						color: #ABB2B0;
+						text-align: center;
+					}
+
+					&.yearNum {
+						margin-top: 0px;
+						color: #ABB2B0;
+						text-align: center;
+					}
+				}
+			}
+		}
+
+		.subtitle {
+			text-align: center;
+			color: #2D3830;
+			font-size: 14px;
+			font-weight: bold;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		.careerArea {
+			width: 100%;
+			border-bottom: 1px solid #CCCCCC;
+			overflow: hidden;
+			padding: 0px 0px 15px 0px;
+
+			.careerWrap {
+				padding: 0px 5px;
+				float: left;
+				width: 50%;
+				color: #2D3830;
+				font-size: 14px;
+
+				.career {
+					text-align: center;
+					margin-bottom: 10px;
+				}
+			}
+		}
+
+		.pledgeArea {
+			color: #2D3830;
+			font-size: 14px;
+			padding: 0 5px;
+
+			.pledge {
+				margin-bottom: 10pt;
+
+			}
+		}
+	}
 
 }
 

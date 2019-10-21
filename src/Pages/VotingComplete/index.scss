@@ -1,97 +1,85 @@
 $white: #FBFDFF;
 
-.VotingResult {
-	display:flex;
-	flex-direction: column;
+.VotingComplete {
 	width: 100%;
 	height: 100%;
 
-	.NavBar {
-		overflow: hidden;
-		width: 100%;
-		height: 60px;
+	.container {
 
-		.voteTitle {
-			width: 70%;
-			line-height: 55px;
-			height: 100%;
-			overflow: hidden;
-			margin: 0 auto;
-
-			p {
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				text-align: center;
-				color: $white;
-				font-size: 18px;
-			}
-		}
-    }
-    
-    .content {
-		height: 100%;
-		padding: 0px 90px;
-		text-align: center;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex: 1;
 
-		p {
-			color : $white;
-			font-size: 18px;
-		}
 
-		.infoMsg {
-			margin-bottom: 10%;
-		}
+		.centerWrap {
+			height: 100%;
+			text-align: center;
 
-		.card {
-			display: flex;
-			position: relative;
-			background: $white;
-			box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-			border-radius: 15px;
-			padding: 10px 20px;
-			margin-bottom: 10%;
+			.center {
+				width: 70vw;
 
-			.horizontalList {
-				width: 100%;
-				& > * {
-					float: left;
-					width: 50%;
-				}
-			}
-			.profile {
-				overflow: hidden;
-				position: relative;
-				float: left;
-				padding: 0px 10px;
+				.card {
+					overflow: hidden;
+					background: $white;
+					box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+					border-radius: 15px;
+					padding: 20px;
+					margin-bottom: 30px;
 
-				.imageWapper {
-					height: 90px;
-				}
+					.horizontalList {
+						width: 100%;
 
-				img {
-					width: 70px;
-				}
-
-				p {
-					text-align: center;
-					font-size: 14px;
-						
-					&.name {
-						color: #2D3830;
+						&>* {
+							float: left;
+							width: 50%;
+						}
 					}
 
-					&.role {
-						color: #ABB2B0;
+					.profile {
+						overflow: hidden;
+						position: relative;
+						float: left;
+						padding: 0px 10px;
+
+						.imageWapper {
+							height: 100px;
+							margin-bottom: 10px;
+						}
+
+						img {
+							width: 70px;
+						}
+
+						p {
+							text-align: center;
+							font-size: 14px;
+
+							&.name {
+								color: #2D3830;
+							}
+
+							&.role {
+								color: #ABB2B0;
+							}
+						}
 					}
 				}
 			}
+
+			p {
+				color: $white;
+				font-size: 18px;
+			}
+
+			.infoMsg {
+				margin-bottom: 10%;
+			}
+
+
 		}
 	}
-	
+
 	.bottomArea {
 		overflow: hidden;
 		padding: 0px 20px 20px 20px;

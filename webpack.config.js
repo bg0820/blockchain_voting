@@ -60,7 +60,7 @@ module.exports = env => ({
 		]
 	},
 	resolve: {
-		extensions: ['*', '.js', '.jsx'],
+		extensions: ['*', '.js', '.jsx', '.ts'],
 		alias: {
 			"@root": path.resolve('src'),
 			"@assets": path.resolve('src/Assets'),

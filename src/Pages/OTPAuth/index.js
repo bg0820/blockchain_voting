@@ -12,7 +12,8 @@ class OTPAuth extends PureComponent {
 		super(props);
 
 		this.state = {
-			value: ''
+			value: '',
+			errorMsg: ''
 		};
 	}
 
@@ -27,9 +28,9 @@ class OTPAuth extends PureComponent {
 
 		axios({
 			method: 'GET',
-			url: 'http://222.238.100.247:3001/otp',
+			url: 'http://222.238.100.247:3001/auth/otp',
 			params: {
-				otp: this.state.value
+				otp: this.state.value.trim()
 			}
 		}).then(function(result) {
 			let data = result.data;
@@ -37,13 +38,21 @@ class OTPAuth extends PureComponent {
 				alert(data.msg);
 			} else {
 				console.log(data);
-				page.setPage('student_number_auth');
+				page.pageMove('student_number_auth');
 			}
 		}).catch(function(error) {
 			console.log(error);
 		})
 
-	} 
+	}
+	
+	handleKeyDown= (e) => {
+		console.log(window.event.keyCode);
+		if (window.event.keyCode == 13) {
+			// 엔터키가 눌렸을 때 실행할 내용
+			login();
+	   }
+	}
 
 	render() {
 		return (
@@ -55,7 +64,7 @@ class OTPAuth extends PureComponent {
 					</div>
 
 					<div className="inputArea">
-						<input type="text" value={this.state.value} onChange={this.handleChange} className="form_control" placeholder="영어 및 숫자로 구성된 10글자를 입력해주세요."></input>
+						<input type="text" value={this.state.value} onKeyDown={this.handleKeyDown} onChange={this.handleChange} className="form_control" placeholder="영어 및 숫자로 구성된 10글자를 입력해주세요."></input>
 					</div>
 					<div className="inputInfoMsg">
 						<div className="horizontalCenter">
@@ -64,6 +73,7 @@ class OTPAuth extends PureComponent {
 						<div className="horizontalCenter">
 						<p className="back">‘웹 서비스 > OTP 조회’</p><p> 메뉴를 통해서 확인할 수 있습니다.</p>
 						</div>
+						<p>{this.state.errorMsg}</p>
 					</div>
 				</AuthTemplate>
 			</div>

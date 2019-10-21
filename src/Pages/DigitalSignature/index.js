@@ -12,7 +12,7 @@ class DigitalSignature extends PureComponent {
 	clickCallback = (e) => {
 		const {page} = this.props;
 		//if()d
-		page.setPage('vote_list');
+		page.pageMove('vote_list');
 	}
 	render() {
 		return (

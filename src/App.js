@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import { observer, inject } from 'mobx-react';
+import { hot } from 'react-hot-loader/root';
 
 import OTPAuth from '@pages/OTPAuth'
 import StudentNumberAuth from '@pages/StudentNumberAuth';
@@ -9,9 +10,8 @@ import PhoneAuth from '@pages/PhoneAuth';
 import DigitalSignature from '@pages/DigitalSignature';
 import VoteList from '@pages/VoteList';
 import Voting from '@pages/Voting';
-import VotingSingle from './Pages/VotingSingle';
-import VotingComplete from './Pages/VotingComplete';
-import VotingResult from './Pages/VotingResult';
+import VotingComplete from '@pages/VotingComplete';
+import VotingResult from '@pages/VotingResult';
 import SubInformation from '@pages/SubInformation';
 
 
@@ -19,6 +19,21 @@ import SubInformation from '@pages/SubInformation';
 @observer
 class App extends PureComponent {
  
+	constructor(props) {
+		super(props);
+		if(typeof Android !== "undefined" && Android !== null) {
+			let deviceID = Android.getDeviceID();
+			localStorage.deviceID = deviceID;
+		} else {
+			localStorage.deviceID = '4f0d89e75f475986';
+		}
+
+		const {page} = this.props;
+
+		if(localStorage.token !== undefined) {
+			page.setPage('vote_list');
+		}
+	}
 	render() {
 		let viewDiv = null;
 
@@ -28,25 +43,21 @@ class App extends PureComponent {
 			viewDiv = <OTPAuth></OTPAuth>
 		} else if(page.page === 'student_number_auth') {
 			viewDiv = <StudentNumberAuth></StudentNumberAuth>
-		} else if(page.page === 'student_number_confrim_auth') {
+		} else if(page.page === 'student_number_confirm_auth') {
 			viewDiv = <StudentNumberConfirm></StudentNumberConfirm>
 		} else if(page.page === 'phone_number_auth') {
 			viewDiv = <PhoneNumberAuth></PhoneNumberAuth>
 		} else if(page.page === 'phone_auth') {
 			viewDiv = <PhoneAuth></PhoneAuth>
-		} else if(page.page === 'digital_signature') {
-			viewDiv = <DigitalSignature></DigitalSignature>
-		} else if(page.page === 'vote_list') {
+		}  else if(page.page === 'vote_list') {
 			viewDiv = <VoteList></VoteList>
-		} else if(page.page === 'voting') {
+		} else if(page.page === 'vote') {
 			viewDiv = <Voting></Voting>
-		}else if(page.page === 'votingSingle') {
-			viewDiv = <VotingSingle></VotingSingle>
-		}else if(page.page === 'votingComplete') {
+		} else if(page.page === 'vote_complete') {
 			viewDiv = <VotingComplete></VotingComplete>
-		}else if(page.page === 'votingResult') {
+		} else if(page.page === 'vote_result') {
 			viewDiv = <VotingResult></VotingResult>
-		} else if(page.page === 'sub_information') {
+		} else if(page.page === 'vote_sub_info') {
 			viewDiv = <SubInformation></SubInformation>
 		}
 
@@ -62,4 +73,4 @@ class App extends PureComponent {
 }
  
 
-export default App;
+export default hot(App);

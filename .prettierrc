@@ -4,5 +4,6 @@
 	"useTabs": true,
 	"tabWidth": 4,
 	"trailingComma": "all",
-	"printWidth": 80
+	"printWidth": 80,
+	experimentalDecorators: true
 }

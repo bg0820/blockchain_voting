@@ -3,8 +3,9 @@ import { observer, inject } from 'mobx-react';
 
 import Button from '@components/Button';
 import KeypadButton from '@components/KeypadButton'
+
+import MainTemplate from '@templates/MainTemplate';
 import './index.scss';
-import MainTemplate from '../MainTemplate';
 
 @inject('page')
 @observer
@@ -13,40 +14,27 @@ class AuthTemplate extends PureComponent {
 	handleKeyPad = (v) => {
 		const {page} = this.props;
 
-		if(page.page === 'student_number_auth') {
-			page.setStudentNumber(page.studentNumber + v);
-
-			if(page.studentNumber.length === 9) {
-				page.setPage('student_number_confrim_auth');
-			}
-		} else if(page.page === 'student_number_confrim_auth') {
-			page.setStudentNumberConfirm(page.studentNumberConfirm + v);
-
-			if(page.studentNumberConfirm.length === 9) {
-				if(page.studentNumber !== page.studentNumberConfirm) {
-					alert('학번이 다릅니다.');
-					return;
-				}
-				page.setPage('phone_number_auth');
-			}
-		} else if(page.page === 'phone_number_auth') {
-			page.setPhoneAuthNum(page.phoneAuthNum + v);
-
-			if(page.phoneAuthNum.length === 6) {
-				
-				page.setPage('digital_signature');
-			}
+		if(this.props.keyPadChange) {
+			this.props.keyPadChange(v);
 		}
 	}
 
 	handleDeleteKeyPad = (v) => {
 		const {page} = this.props;
-		page.setStudentNumber(page.studentNumber.substring(0, page.studentNumber.length - 1));
+
+		if(page.page === 'student_number_auth') {
+			page.setStudentNumber(page.studentNumber.substring(0, page.studentNumber.length - 1));
+		} else if(page.page === 'student_number_confirm_auth') {
+			page.setStudentNumberConfirm(page.studentNumberConfirm.substring(0, page.studentNumberConfirm.length - 1));
+		} else if(page.page === 'phone_number_auth') {
+			page.setPhoneAuthNum(page.phoneAuthNum.substring(0, page.phoneAuthNum.length - 1));
+		}
+		
 	}
 
 	backPage = () => {
 		const {page} = this.props;
-		page.setPage(page.prevPage);
+		page.pageMove(page.prevPage);
 	}
 
 	clickCallback = (e) => {
@@ -72,9 +60,8 @@ class AuthTemplate extends PureComponent {
 					<KeypadButton value="9" clickCallback={this.handleKeyPad}></KeypadButton>
 					<div></div>
 					<KeypadButton value="0" bottom={true} clickCallback={this.handleKeyPad}></KeypadButton>
-					<div className="deleteKey bottomElem" onClick={this.handleDeleteKeyPad}>
-						<span className="I_LEFT_ARROW relative"></span>
-					</div>
+					<KeypadButton bottom={true}  isDeleteKey={true} clickCallback={this.handleDeleteKeyPad}></KeypadButton>
+					
 				</div>
 			);
 		}
