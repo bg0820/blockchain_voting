@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import { observer, inject } from 'mobx-react';
 
+import axios from 'axios';
 import BottomButtonTemplate from '@templates/BottomButtonTemplate';
 import Button from '@components/Button';
 import Chart from '@components/Chart';
@@ -9,16 +10,113 @@ import StickChart from '@components/StickChart';
 import './index.scss'
 
 @inject('voteList')
+@inject('voteResult')
 @inject('vote')
 @inject('page')
+@observer
 class VotingResult extends PureComponent {
+	
+	componentDidMount() {
+		this.getVoteDetail();
+
+		
+	}
+
+	getVoteDetail = async () => {
+		const {voteList, voteResult} = this.props;
+
+		console.log('getVoteDetail');
+		let result = await axios({
+			method: 'GET',
+			url: 'http://222.238.100.247:3001/vote/detail',
+			params: {
+				voteIdx: voteList.selectVoteIdx
+			}
+		});
+		let data = result.data;
+
+		if(data.result === 'success') {
+			voteResult.candidateGroupInit(data.data);
+			this.getReport();
+		}
+	}
+
+	getReport = async () => {
+		const {voteList, voteResult} = this.props;
+
+		let result = await axios({
+			method: 'GET',
+			url: 'http://222.238.100.247:3001/user/vote/report',
+			params: {
+				voteIdx: voteList.selectVoteIdx
+			}
+		});
+		let data = result.data;
+
+		if(data.result === 'success') {
+			voteResult.reportInit(data.data);
+		}else {
+			alert(data.msg);
+		}
+
+
+	}
+	
 	clickCallback = (e) => {
+
 	}
 
 	render() {
-		const {voteList, vote} = this.props;
+		const {voteList, voteResult} = this.props;
 
 		let graph = null;
+
+		let color=['#35D0A4', '#4192FF', '#7F9AF7'];
+
+		if(voteResult.report.candidateGroup !== undefined) {
+			graph = voteResult.report.candidateGroup.map((item, i) => {
+				return (
+					<div key={i} className="graph">
+						<p className="term">{item.num}번 ({item.name})</p>
+						<StickChart percent={item.cnt / voteResult.report.totalCnt * 100.0} color={color[i]}></StickChart>
+					</div>
+				)
+			})
+		}
+
+		let profile = null;
+
+		if(voteResult.report.candidate !== undefined) {
+			let candidate = voteResult.report.candidate;
+			profile = (
+				<div className="horizontalList">
+					<div className="profile">
+						<div className="imageWapper">
+						<img src={candidate[0].profileImg}></img> 
+						</div>
+						<p className="name">{candidate[0].name}</p>
+						<p className="role">{candidate[0].position === 1 ? '정 학생회장' : '부 학생회장'}</p>
+					</div>   
+					<div className="profile">
+						<div className="imageWapper">
+						<img src={candidate[1].profileImg}></img> 
+						</div>
+						<p className="name">{candidate[1].name}</p>
+						<p className="role">{candidate[1].position === 1 ? '정 학생회장' : '부 학생회장'}</p>
+					</div>  
+				</div>
+			)
+		}
+
+		let commit = null;
+
+		if(voteResult.report.info !== undefined) {
+			let commitSplit = voteResult.report.info.commit.split('<br/>');
+			commit = commitSplit.map((item, i) => {
+				return (<li key={i}>{item}</li>)
+			});
+		}
+		
 
 		return (
 			<div className="VotingResult">
@@ -26,55 +124,33 @@ class VotingResult extends PureComponent {
 					<div className="content">
 						<div className="statistics">
 							<div className="chartWrap">
-								<Chart color="#17A6FF" isChart={true} value={90} str="개표율 "></Chart>
+								<Chart color="#17A6FF" isChart={true} value={voteResult.report.validVoteCnt} str="개표율 "></Chart>
 							</div>
 							<div className="chartWrap">
-								<Chart color="#7F9AF7" isChart={true} value={75} str="투표율"></Chart>
+								<Chart color="#7F9AF7" isChart={true} value={voteResult.report.voteCnt / voteResult.report.totalCnt * 100.0} str="투표율"></Chart>
 							</div>
 							<div className="chartWrap">
-								<Chart value={1522} str="투표자 수"></Chart>
+								<Chart value={voteResult.report.totalCnt} str="투표자 수"></Chart>
 							</div>
 							<div className="chartWrap">
-								<Chart value={30} str="기권 수"></Chart>
+								<Chart value={voteResult.report.abstenCnt} str="기권 수"></Chart>
 							</div>
 						</div>
 						<div className="article">
 							<p className="info">투표 결과</p>
 							<div className="card">
-								<div className="graph">
-									<p className="term">기호 1번</p>
-									<StickChart percent={80} color="#35D0A4"></StickChart>
-								</div>
-								<div className="graph">
-									<p className="term">기호 2번</p>
-									<StickChart percent={20} color="#4192FF"></StickChart>
-								</div>    
+								{graph}
 								<div className="graph">
 									<p className="term red">기권</p>
-									<StickChart percent={0} color="#FF7171"></StickChart>
+									<StickChart percent={voteResult.report.abstenCnt / voteResult.report.totalCnt * 100.0} color="#FF7171"></StickChart>
 								</div>
 							</div>
                   	  	</div>
 
 						<div className="article">
-							<p className="info">당선자 (운동화)</p>
+							<p className="info">당선자 ({voteResult.report.info.name})</p>
 							<div className="card">
-								<div className="horizontalList">
-									<div className="profile">
-										<div className="imageWapper">
-										<img src="/image/orang.png"></img> 
-										</div>
-										<p className="name">오랑우탄</p>
-										<p className="role">정 학생회장</p>
-									</div>   
-									<div className="profile">
-										<div className="imageWapper">
-										<img src="/image/mogarn.png"></img> 
-										</div>
-										<p className="name">모건 프리먼</p>
-										<p className="role">부 학생회장</p>
-									</div>  
-								</div>
+								{profile}
 							</div>
 						</div>
 
@@ -83,11 +159,7 @@ class VotingResult extends PureComponent {
 							<div className="card">
 								<div className="verticalList">
 									<ol>
-										<li>성공회대를 국회로</li>
-										<li>기말고사 폐지</li>
-										<li>중간고사 폐지</li>
-										<li>절대평가로 변경</li>
-										<li>야식사업 매일</li>
+									{commit}
 									</ol>
 								</div>
 							</div>

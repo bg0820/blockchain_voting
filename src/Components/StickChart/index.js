@@ -33,7 +33,7 @@ class StickChart extends PureComponent {
 		let parent = this;
 
 		var inte = setInterval(function() {
-			let max = canvas.width - 50.0;
+			let max = canvas.width - 60.0;
 			let widthMapp = (100.0 - (100.0 - animation)) / 100.0;
 			let width = ((max * widthMapp) * 2);
 
