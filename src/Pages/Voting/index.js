@@ -10,6 +10,8 @@ import bongkoo from '@assets/bongkoo.png';
 import james from '@assets/james.png';
 import vote_mark from '@assets/vote_mark.png';
 
+import * as Util from '@utils';
+
 import './index.scss'
 
 @inject('page')
@@ -63,12 +65,24 @@ class Voting extends PureComponent {
 		vote.voting(idx);
 	}
 
-	callbackAbstention = (result) => {
+	callbackAbstention = async (result) => {
 		const {page, vote} = this.props;
 		
+		console.log(ote.candidateGroups[0].idx);
 		if(result === 'ok') {
-			vote.setVote(3);
-			page.pageMove('vote_complete');
+			let data = await Util.ServerRequest('/user/vote', 'POST', {
+				candidateGroupIdx: vote.candidateGroups[0].idx,
+				voteType: 'ABS'
+			});
+
+			if(data.result === 'success') {
+				vote.setVote(3);
+				page.pageMove('vote_complete');
+			} else {
+				alert(data.msg);
+			}
+
+			
 		}
 	}
 
@@ -81,25 +95,59 @@ class Voting extends PureComponent {
 		modal.show('알림', '기권 하시겠습니까?', 'dialog', this.callbackAbstention);
 	}
 
-	handleVoting = (e) => {
+	handleVoting = async (e) => {
 		const {page, modal, vote} = this.props;
 
 		let isSelectCnt = 0;
-		vote.candidateGroups.map((item, i) => {
-			item.select === true ? isSelectCnt++ : null
-		});
+		let selectCandidateIdx;
+		
+		console.log(JSON.parse(JSON.stringify(vote.candidateGroups)));
+		//vote.candidateGroups[selectCandidateIdx].
+		
 
+		// 단일 투표
 		if(vote.candidateGroups.length === 1) {
 			if(vote.vote === 0) {
 				modal.show('알림', '투표를 해주세요.', 'ok', this.callbackVoting);
 			} else {
-				page.pageMove('vote_complete');
+				let voteType = 'AGG'
+				if(vote.vote === 2)
+					voteType = 'OPP'
+				
+				let data = await Util.ServerRequest('/user/vote', 'POST', {
+					candidateGroupIdx: vote.candidateGroups[0].idx,
+					voteType: voteType
+				});
+
+				if(data.result === 'success') {
+					page.pageMove('vote_complete');
+				} else {
+					alert(data.msg);
+				}
+
+				
 			}
 		} else {
+			for(var i = 0 ; i < vote.candidateGroups.length; i++) {
+				if(vote.candidateGroups[i].select === true) {
+					isSelectCnt++;
+					selectCandidateIdx = vote.candidateGroups[i].idx;
+				}
+			}
+
 			if(isSelectCnt === 0) {
 				modal.show('알림', '후보를 선택해 주세요.', 'ok', this.callbackVoting);
 			} else {
-				page.pageMove('vote_complete');
+				let data = await Util.ServerRequest('/user/vote', 'POST', {
+					candidateGroupIdx: selectCandidateIdx,
+					voteType: 'VOTE'
+				});
+
+				if(data.result === 'success') {
+					page.pageMove('vote_complete');
+				} else {
+					alert(data.msg);
+				}
 			}
 		}
 	}

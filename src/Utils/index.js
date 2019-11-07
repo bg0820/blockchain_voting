@@ -12,6 +12,9 @@ export const ServerRequest = async function(_url, _method, _params) {
 	else if(_method === 'POST')
 		data = _params;
 	
+	if(localStorage['token'])
+		header = {'Authorization': "Bearer " + localStorage['token']};
+	
 
 	let resp = await axios({
 		method: _method,

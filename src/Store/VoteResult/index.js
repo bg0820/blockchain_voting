@@ -1,0 +1,18 @@
+import { observable, action, computed} from 'mobx';
+
+export default class VoteResult {
+	@observable
+	report = {};
+	@observable
+	candidateGroups = [];
+
+
+	@action candidateGroupInit = (data) => {
+		this.candidateGroups = data;
+	}
+	
+	@action reportInit = (report) => {
+		this.report = report;
+	}
+
+}
