@@ -117,6 +117,9 @@ class VotingResult extends PureComponent {
 			});
 		}
 		
+		let absPer = voteResult.report.abstenCnt / voteResult.report.totalCnt * 100.0;
+		if(absPer === Infinity)
+		absPer = 0;
 
 		return (
 			<div className="VotingResult">
@@ -130,10 +133,10 @@ class VotingResult extends PureComponent {
 								<Chart color="#7F9AF7" isChart={true} value={voteResult.report.voteCnt / voteResult.report.totalCnt * 100.0} str="투표율"></Chart>
 							</div>
 							<div className="chartWrap">
-								<Chart value={voteResult.report.totalCnt} str="투표자 수"></Chart>
+								<Chart value={voteResult.report.totalCnt? voteResult.report.totalCnt : 0} str="투표자 수"></Chart>
 							</div>
 							<div className="chartWrap">
-								<Chart value={voteResult.report.abstenCnt} str="기권 수"></Chart>
+								<Chart value={voteResult.report.abstenCnt ? voteResult.report.abstenCnt : 0} str="기권 수"></Chart>
 							</div>
 						</div>
 						<div className="article">
@@ -142,13 +145,13 @@ class VotingResult extends PureComponent {
 								{graph}
 								<div className="graph">
 									<p className="term red">기권</p>
-									<StickChart percent={voteResult.report.abstenCnt / voteResult.report.totalCnt * 100.0} color="#FF7171"></StickChart>
+									<StickChart percent={absPer} color="#FF7171"></StickChart>
 								</div>
 							</div>
                   	  	</div>
 
 						<div className="article">
-							<p className="info">당선자 ({voteResult.report.info.name})</p>
+							<p className="info">당선자 ({voteResult.report.info === undefined ? "" : voteResult.report.info.name})</p>
 							<div className="card">
 								{profile}
 							</div>

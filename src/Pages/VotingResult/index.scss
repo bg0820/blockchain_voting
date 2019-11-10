@@ -74,9 +74,13 @@ $white: #FBFDFF;
 				.horizontalList {
 					width: 100%;
 
+					display: flex;
+					justify-content: center;
+
 					&>* {
 						float: left;
 						width: 33.3333%;
+						margin: 0 20px;
 					}
 				}
 

@@ -101,7 +101,7 @@ class Voting extends PureComponent {
 		let isSelectCnt = 0;
 		let selectCandidateIdx;
 		
-		console.log(JSON.parse(JSON.stringify(vote.candidateGroups)));
+		//console.log(JSON.parse(JSON.stringify(vote.candidateGroups)));
 		//vote.candidateGroups[selectCandidateIdx].
 		
 
@@ -161,7 +161,7 @@ class Voting extends PureComponent {
 	render() {
 		const {vote, voteList} = this.props;
 
-		console.log(JSON.parse(JSON.stringify(vote.candidateGroups)));
+		// console.log(JSON.parse(JSON.stringify(vote.candidateGroups)));
 
 		let buttonDiv = (
 			<div className="split">
