@@ -6,6 +6,9 @@ export default class VoteResult {
 	@observable
 	candidateGroups = [];
 
+	@action init = () => {
+		this.report = {};
+	}
 
 	@action candidateGroupInit = (data) => {
 		this.candidateGroups = data;

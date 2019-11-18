@@ -38,64 +38,89 @@ class VotingComplete extends PureComponent {
 				</React.Fragment>
 			);
 		} else {
+			// 단일 후보 일경우
 			if(vote.candidateGroups.length === 1) {
 				let selectCandidateGroup = vote.candidateGroups[0];
-				
-				card = (
-					<React.Fragment>
-						<div className="card">
-							<div className="horizontalList">
-								<div className="profile">
-									<div className="imageWapper">
-									<img src={selectCandidateGroup.candidate[0].img}></img> 
-									</div>
-									<p className="name">{selectCandidateGroup.candidate[0].name}</p>
-									<p className="role">{selectCandidateGroup.candidate[0].position}</p>
-								</div>   
-								<div className="profile">
-									<div className="imageWapper">
-									<img src={selectCandidateGroup.candidate[1].img}></img> 
-									</div>
-									<p className="name">{selectCandidateGroup.candidate[1].name}</p>
-									<p className="role">{selectCandidateGroup.candidate[1].position}</p>
-								</div>    
+				console.log(JSON.parse(JSON.stringify(selectCandidateGroup)));
+				let profile = selectCandidateGroup.candidate.map((item, i) => {
+					return (
+						<div className="profile" key={i}>
+							<div className="imageWapper">
+							<img src={item.img}></img> 
 							</div>
-						</div>
-						<div >
-							<p>단일 후보 ({selectCandidateGroup.title}) 을(를)</p>
-							<p>{vote.vote === 1 ? '찬성': '반대'} 하셨습니다.</p>
-						</div>
-					</React.Fragment>
-				);
+							<p className="name">{item.name}</p>
+							<p className="role">{item.position}</p>
+						</div> 
+					)
+				});
+				
+				if(selectCandidateGroup.candidate.length === 1) {
+					card = (
+						<React.Fragment>
+							<div className="card solo">	{profile}</div>
+							<div >
+								<p>단일 후보 ({selectCandidateGroup.title}) 을(를)</p>
+								<p>{vote.vote === 1 ? '찬성': '반대'} 하셨습니다.</p>
+							</div>
+						</React.Fragment>
+					);
+				} else {
+					card = (
+						<React.Fragment>
+							<div className="card">
+								<div className="horizontalList">
+									{profile}
+								</div>
+							</div>
+							<div >
+								<p>단일 후보 ({selectCandidateGroup.title}) 을(를)</p>
+								<p>{vote.vote === 1 ? '찬성': '반대'} 하셨습니다.</p>
+							</div>
+						</React.Fragment>
+					);
+					
+				}
 			} else {
 				let selectCandidateGroup = vote.candidateGroups[vote.selectCandidate];
 
-				card = (
-					<React.Fragment>
-						<div className="card">
-							<div className="horizontalList">
-								<div className="profile">
-									<div className="imageWapper">
-									<img src={selectCandidateGroup.candidate[0].img}></img> 
-									</div>
-									<p className="name">{selectCandidateGroup.candidate[0].name}</p>
-									<p className="role">{selectCandidateGroup.candidate[0].position}</p>
-								</div>   
-								<div className="profile">
-									<div className="imageWapper">
-									<img src={selectCandidateGroup.candidate[1].img}></img> 
-									</div>
-									<p className="name">{selectCandidateGroup.candidate[1].name}</p>
-									<p className="role">{selectCandidateGroup.candidate[1].position}</p>
-								</div>    
+				console.log(JSON.parse(JSON.stringify(selectCandidateGroup)));
+				let profile = selectCandidateGroup.candidate.map((item, i) => {
+					return (
+						<div className="profile"  key={i}>
+							<div className="imageWapper">
+							<img src={item.img}></img> 
 							</div>
-						</div>
-						<div >
-							<p>기호 {selectCandidateGroup.num}번 ({selectCandidateGroup.title}) 에게</p>
-							<p>투표 하셨습니다.</p>
-						</div>
-					</React.Fragment>
-				);
+							<p className="name">{item.name}</p>
+							<p className="role">{item.position}</p>
+						</div>  
+					)
+				});
+
+				if(selectCandidateGroup.candidate.length === 1) {
+					card = (
+						<React.Fragment>
+							<div className="card solo">	{profile}</div>
+							<div >
+								<p>기호 {selectCandidateGroup.num}번 ({selectCandidateGroup.title}) 에게</p>
+								<p>투표 하셨습니다.</p>
+							</div>
+						</React.Fragment>
+					);
+				} else {
+					card = (
+						<React.Fragment>
+							<div className="card">
+								<div className="horizontalList">
+									{profile}
+								</div>
+							</div>
+							<div >
+								<p>기호 {selectCandidateGroup.num}번 ({selectCandidateGroup.title}) 에게</p>
+								<p>투표 하셨습니다.</p>
+							</div>
+						</React.Fragment>
+					);
+				}
 			}
 		}
 		
@@ -110,7 +135,6 @@ class VotingComplete extends PureComponent {
 								<p>투표 완료</p>
 							</div>
 							{card}
-							
 						</div>
 					</div>
 

@@ -27,6 +27,12 @@ $white: #FBFDFF;
 					padding: 20px;
 					margin-bottom: 30px;
 
+					&.solo {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+					}
+
 					.horizontalList {
 						width: 100%;
 

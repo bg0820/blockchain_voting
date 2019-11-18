@@ -110,13 +110,16 @@ $white: #FBFDFF;
 					padding: 0px 15px;
 
 					.imageWapper {
-						height: 100px;
+						text-align: center;
+
+						img {
+
+							width: 100%;
+							max-height: 200px;
+						}
+
 					}
 
-					img {
-						width: 80px;
-						height: 90px;
-					}
 
 					p {
 						text-align: center;

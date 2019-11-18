@@ -30,10 +30,15 @@ class Chart extends PureComponent {
 		let innerWidth = 40;
 		let innerHeight = 40;
 
-		var percent = this.props.value;
+		var percent = this.props.percent;
 		var animation = 0;
 		
 		let parent = this;
+
+		if(this.props.percent === 0 || this.props.percent === undefined || this.props.percent === null) {
+			percent = 0;
+		}
+
 		if(this.props.isChart) {
 
 			var inte = setInterval(function() {
@@ -71,7 +76,7 @@ class Chart extends PureComponent {
 					clearInterval(inte);
 				
 				animation++;
-			}, 10);
+			}, 5);
 		} else {
 			ctx.clearRect(0,0, canvas.width, canvas.height);
 	
