@@ -32,6 +32,11 @@ class StickChart extends PureComponent {
 		var animation = 0;
 		let parent = this;
 
+		if(this.props.percent === 0 || this.props.percent === undefined || this.props.percent === null) {
+			percent = 0;
+		}
+			
+
 		var inte = setInterval(function() {
 			let max = canvas.width - 60.0;
 			let widthMapp = (100.0 - (100.0 - animation)) / 100.0;
@@ -90,7 +95,7 @@ class StickChart extends PureComponent {
 					clearInterval(inte);
 				
 			animation++;
-		}, 10);
+		}, 5);
 		
 	}
 
